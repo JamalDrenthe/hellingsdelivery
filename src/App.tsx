@@ -44,12 +44,12 @@ function AnimatedRoutes() {
             <Route path="diensten" element={<ServicesPage />} />
             <Route path="faq" element={<FaqPage />} />
             <Route path="contact" element={<ContactPage />} />
+            <Route path="privacy" element={<PrivacyPage />} />
+            <Route path="voorwaarden" element={<VoorwaardenPage />} />
+            <Route path="prijzen" element={<PrijzenPage />} />
           </Route>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/privacy" element={<PrivacyPage />} />
-          <Route path="/voorwaarden" element={<VoorwaardenPage />} />
-          <Route path="/prijzen" element={<PrijzenPage />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/account" element={<AccountLayout />}>
               <Route index element={<AccountOverviewPage />} />

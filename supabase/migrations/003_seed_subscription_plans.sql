@@ -29,7 +29,7 @@ VALUES
     'Spoedritverzekering',
     'Zekerheid dat er altijd binnen 30 minuten een koeriersdienst beschikbaar is, dag en nacht, 7 dagen per week.',
     'month',
-    7900,
+    37500,
     '["Garantie: binnen 30 minuten beschikbaar", "Geldig 24/7, ook op feestdagen", "Spoedrit max 3× per maand inbegrepen", "Directe telefonische beschikbaarheid", "Volledig verzekerd transport", "Nationaal dekkingsgebied"]',
     true
   )

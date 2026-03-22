@@ -1,31 +1,11 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { CheckCircle, ArrowRight, Clock, Shield, Star, Zap, Phone } from 'lucide-react';
+import { CheckCircle, ArrowRight, Shield, Star, Zap, Phone, Clock, FileText } from 'lucide-react';
 import { fadeUp, staggerContainer, staggerChild, viewportOnce } from '../lib/animations';
 import SeoHead from '../components/SeoHead';
 import { useAuth } from '../contexts/AuthContext';
 
 const plans = [
-  {
-    id: 'vaste-ophaalmomenten',
-    name: 'Vaste Ophaalmomenten',
-    badge: null,
-    price: 149,
-    interval: 'maand',
-    description: 'Ideaal voor zakelijke klanten met vaste logistieke behoeften. Wij komen elke dag of week op vaste tijden ophalen.',
-    icon: Clock,
-    color: 'from-[#112A46] to-[#1a3a5c]',
-    features: [
-      'Tot 5 vaste ophaalmomenten per week',
-      'Dedicated chauffeur op jouw route',
-      'Prioriteit boven losse boekingen',
-      'Maandelijkse rapportage',
-      'Dedicated accountmanager',
-      'Factuur achteraf mogelijk',
-    ],
-    cta: 'Plan activeren',
-    highlight: false,
-  },
   {
     id: 'membership',
     name: 'Membership',
@@ -52,7 +32,7 @@ const plans = [
     id: 'spoedritverzekering',
     name: 'Spoedritverzekering',
     badge: null,
-    price: 79,
+    price: 375,
     interval: 'maand',
     description: 'Zekerheid dat er altijd binnen 30 minuten een koeriersdienst beschikbaar is, dag en nacht, 7 dagen per week.',
     icon: Zap,
@@ -113,7 +93,7 @@ export default function PrijzenPage() {
       {/* Plans */}
       <section className="py-16 lg:py-24 bg-[#111]">
         <div className="container mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {plans.map((plan, i) => {
               const Icon = plan.icon;
               return (
@@ -170,6 +150,50 @@ export default function PrijzenPage() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* Vaste ophaalmomenten op aanvraag */}
+      <section className="py-16 bg-[#111]">
+        <div className="container mx-auto px-4 md:px-8">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            className="max-w-3xl mx-auto bg-[#151515] border border-white/5 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row gap-8 items-center"
+          >
+            <div className="w-16 h-16 bg-[#f04e23]/10 rounded-2xl flex items-center justify-center shrink-0">
+              <Clock className="w-8 h-8 text-[#f04e23]" />
+            </div>
+            <div className="flex-1">
+              <h2 className="text-xl font-black text-white uppercase tracking-tight mb-2">Vaste Ophaal- &amp; Levermomenten</h2>
+              <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                Wilt u vaste ophaal- en levermomenten op maat? Dit is een maatwerkarrangement. Maak een account aan, vul uw gegevens in en wij nemen contact op om uw vaste schema in te plannen.
+              </p>
+              <ul className="space-y-1 mb-6">
+                {['Tot 5 vaste ophaalmomenten per week', 'Dedicated chauffeur op uw route', 'Prioriteit boven losse boekingen', 'Factuur achteraf mogelijk'].map((f, i) => (
+                  <li key={i} className="text-gray-400 text-xs flex items-center gap-2">
+                    <CheckCircle className="w-3 h-3 text-[#f04e23] shrink-0" />{f}
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  to="/register"
+                  className="flex items-center gap-2 bg-[#f04e23] hover:bg-[#d43d14] text-white font-bold uppercase tracking-wider text-sm px-6 py-3 rounded-xl transition-colors"
+                >
+                  <FileText className="w-4 h-4" /> Account aanmaken
+                </Link>
+                <Link
+                  to="/contact"
+                  className="flex items-center gap-2 border border-white/10 hover:border-white/20 text-gray-300 hover:text-white font-bold uppercase tracking-wider text-sm px-6 py-3 rounded-xl transition-all"
+                >
+                  <Phone className="w-4 h-4" /> Contact opnemen
+                </Link>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { CreditCard, AlertCircle, CheckCircle, ArrowRight, Star } from 'lucide-react';
+import { CreditCard, AlertCircle, CheckCircle, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { supabase } from '../../lib/supabase';
 import type { CustomerSubscription, SubscriptionPlan } from '../../types/database';
@@ -16,6 +15,8 @@ export default function SubscriptionsPage() {
   const [plans, setPlans] = useState<SubscriptionPlan[]>([]);
   const [loading, setLoading] = useState(true);
   const [cancelingId, setCancelingId] = useState<string | null>(null);
+  const [activatingId, setActivatingId] = useState<string | null>(null);
+  const [successId, setSuccessId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -35,6 +36,35 @@ export default function SubscriptionsPage() {
   }, [user]);
 
   const activeIds = new Set(subs.filter(s => s.status === 'active').map(s => s.plan_id));
+
+  async function handleActivate(planId: string) {
+    if (!user) return;
+    setActivatingId(planId);
+    setError(null);
+    const now = new Date();
+    const end = new Date(now);
+    end.setMonth(end.getMonth() + 1);
+    const { error: err } = await supabase.from('customer_subscriptions').insert({
+      customer_id: user.id,
+      plan_id: planId,
+      status: 'active',
+      current_period_start: now.toISOString(),
+      current_period_end: end.toISOString(),
+    });
+    if (err) {
+      setError('Activeren mislukt. Probeer het opnieuw.');
+    } else {
+      setSuccessId(planId);
+      const { data } = await supabase
+        .from('customer_subscriptions')
+        .select('*, subscription_plans(*)')
+        .eq('customer_id', user.id)
+        .order('created_at', { ascending: false });
+      setSubs((data as typeof subs) ?? []);
+      setTimeout(() => setSuccessId(null), 3000);
+    }
+    setActivatingId(null);
+  }
 
   async function handleCancel(subId: string) {
     if (!confirm('Weet u zeker dat u dit abonnement wilt opzeggen?')) return;
@@ -102,11 +132,17 @@ export default function SubscriptionsPage() {
                   <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
                     <span className="text-white font-black text-sm">€{(plan.price / 100).toFixed(2)}<span className="text-gray-500 font-normal text-xs">/{intervalLabel[plan.billing_interval] ?? plan.billing_interval}</span></span>
                     {isActive ? (
-                      <span className="text-xs text-gray-500">Actief abonnement</span>
+                      <span className="text-xs font-bold text-green-400 flex items-center gap-1"><CheckCircle className="w-3 h-3" />Actief</span>
+                    ) : successId === plan.id ? (
+                      <span className="text-xs font-bold text-green-400 flex items-center gap-1"><CheckCircle className="w-3 h-3" />Geactiveerd!</span>
                     ) : (
-                      <Link to="/prijzen" className="flex items-center gap-1 bg-[#f04e23] hover:bg-[#d43d14] text-white text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-xl transition-colors">
-                        Activeer <ArrowRight className="w-3 h-3" />
-                      </Link>
+                      <button
+                        onClick={() => handleActivate(plan.id)}
+                        disabled={activatingId === plan.id}
+                        className="flex items-center gap-1 bg-[#f04e23] hover:bg-[#d43d14] text-white text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-xl transition-colors disabled:opacity-60"
+                      >
+                        {activatingId === plan.id ? <div className="w-3 h-3 border border-white border-t-transparent rounded-full animate-spin" /> : 'Activeer'}
+                      </button>
                     )}
                   </div>
                 </div>

@@ -1,6 +1,8 @@
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { User, Package, CreditCard, LogOut, ChevronRight, LayoutDashboard, ShoppingBag } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
+import Header from '../../components/layout/Header';
+import Footer from '../../components/layout/Footer';
 
 const navItems = [
   { to: '/account', label: 'Overzicht', icon: LayoutDashboard, end: true },
@@ -19,9 +21,12 @@ export default function AccountLayout() {
     navigate('/');
   }
 
+  const displayName = profile?.full_name ?? profile?.email;
+
   return (
-    <div className="min-h-screen bg-[#0a0a0a] pt-24 pb-16">
-      <div className="container mx-auto px-4">
+    <div className="min-h-screen bg-[#0a0a0a] flex flex-col">
+      <Header />
+      <div className="container mx-auto px-4 pt-24 pb-16 flex-1">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar */}
           <aside className="lg:w-64 shrink-0">
@@ -31,7 +36,7 @@ export default function AccountLayout() {
                   <User className="w-5 h-5 text-[#f04e23]" />
                 </div>
                 <div className="overflow-hidden">
-                  <p className="text-white font-bold text-sm truncate">{profile?.full_name ?? 'Account'}</p>
+                  <p className="text-white font-bold text-sm truncate">{displayName ?? 'Mijn Account'}</p>
                   <p className="text-gray-500 text-xs truncate">{profile?.email}</p>
                 </div>
               </div>
@@ -73,6 +78,7 @@ export default function AccountLayout() {
           </main>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
