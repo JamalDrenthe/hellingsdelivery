@@ -9,7 +9,7 @@
     <meta name="description" content="Hellings Delivery: exclusieve koeriers- en vervoersdiensten. VIP vervoer, discreet transport en zorgvervoer in Nederland en België. 24/7 beschikbaar." />
     <meta name="keywords" content="koerier, VIP vervoer, zorgvervoer, discreet transport, luxe vervoer, koerier Nederland, koerier België" />
     <meta name="author" content="Hellings Delivery" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 
     <!-- Canonical & hreflang -->
     <link rel="canonical" href="https://hellingsdelivery.nl" />
@@ -45,7 +45,64 @@
     <meta name="twitter:image" content="https://hellingsdelivery.nl/images/hellingsdeliverylogofull.png" />
     <meta name="twitter:image:alt" content="Hellings Delivery logo – luxe vervoersdiensten" />
 
-    <!-- JSON-LD Structured Data (schema.org) -->
+    <!-- JSON-LD: WebSite + SearchAction -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://hellingsdelivery.nl/#website",
+      "name": "Hellings Delivery",
+      "url": "https://hellingsdelivery.nl",
+      "description": "Exclusieve koeriers- en vervoersdiensten in Nederland en België",
+      "inLanguage": "nl-NL",
+      "publisher": { "@id": "https://hellingsdelivery.nl/#organization" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": { "@type": "EntryPoint", "urlTemplate": "https://hellingsdelivery.nl/faq?q={search_term_string}" },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- JSON-LD: Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://hellingsdelivery.nl/#organization",
+      "name": "Hellings Delivery",
+      "url": "https://hellingsdelivery.nl",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://hellingsdelivery.nl/images/hellingsdeliverylogo.png",
+        "width": 512,
+        "height": 512
+      },
+      "image": "https://hellingsdelivery.nl/images/hellingsdeliverylogofull.png",
+      "description": "Exclusieve koeriers- en vervoersdiensten in Nederland en België met 100% discretie.",
+      "telephone": "+31201234567",
+      "email": "info@hellingsdelivery.nl",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Hoofdweg 123",
+        "addressLocality": "Amsterdam",
+        "postalCode": "1012 AB",
+        "addressCountry": "NL"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+31201234567",
+        "contactType": "customer service",
+        "availableLanguage": ["Dutch", "English"],
+        "hoursAvailable": "Mo-Su 00:00-23:59"
+      },
+      "sameAs": [
+        "https://github.com/JamalDrenthe/hellingsdelivery"
+      ]
+    }
+    </script>
+
+    <!-- JSON-LD: LocalBusiness + TaxiService -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",

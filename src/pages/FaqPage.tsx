@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   ChevronDown, ChevronRight, Phone, Mail, Clock, Search
 } from 'lucide-react';
+import SeoHead from '../components/SeoHead';
 
 interface FAQItem {
   question: string;
@@ -136,6 +137,28 @@ export default function FaqPage() {
     { id: 'betaling', label: 'Betaling' }
   ];
 
+  const faqJsonLd = useMemo(() => ({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': faqs.map(faq => ({
+      '@type': 'Question',
+      'name': faq.question,
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': faq.answer
+      }
+    }))
+  }), []);
+
+  const breadcrumbJsonLd = useMemo(() => ({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://hellingsdelivery.nl' },
+      { '@type': 'ListItem', 'position': 2, 'name': 'Veelgestelde Vragen', 'item': 'https://hellingsdelivery.nl/faq' }
+    ]
+  }), []);
+
   const filteredFaqs = faqs.filter(faq => {
     const matchesCategory = activeCategory === 'all' || faq.category === activeCategory;
     const matchesSearch = searchQuery === '' || 
@@ -146,10 +169,17 @@ export default function FaqPage() {
 
   return (
     <div>
+      <SeoHead
+        title="FAQ – Veelgestelde Vragen | Hellings Delivery"
+        description="Antwoorden op veelgestelde vragen over VIP vervoer, zorgvervoer, boeken en veiligheid bij Hellings Delivery. 24/7 bereikbaar."
+        canonical="https://hellingsdelivery.nl/faq"
+        jsonLd={[faqJsonLd, breadcrumbJsonLd]}
+      />
+
       {/* Hero Section */}
       <section className="relative bg-[#0a0a0a] min-h-[60vh] flex items-center pt-24 lg:pt-20 overflow-hidden">
         <div className="absolute inset-0">
-          <img src="https://images.unsplash.com/photo-1586528116311-ad8ed3c8d90c?q=80&w=2070&auto=format&fit=crop" alt="FAQ Background" className="w-full h-full object-cover opacity-20" />
+          <img src="https://images.unsplash.com/photo-1586528116311-ad8ed3c8d90c?q=80&w=2070&auto=format&fit=crop" alt="Veelgestelde vragen over Hellings Delivery vervoersdiensten" loading="lazy" className="w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#111] via-[#111]/80 to-transparent"></div>
         </div>
         

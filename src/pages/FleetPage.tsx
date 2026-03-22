@@ -193,7 +193,7 @@ export default function FleetPage() {
       {/* Hero Section */}
       <section className="relative bg-[#0a0a0a] min-h-[60vh] flex items-center pt-24 lg:pt-20 overflow-hidden">
         <div className="absolute inset-0">
-          <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=2070&auto=format&fit=crop" alt="Fleet Background" className="w-full h-full object-cover opacity-20" />
+          <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=2070&auto=format&fit=crop" alt="Hellings Delivery wagenpark overzicht" loading="lazy" className="w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#111] via-[#111]/80 to-transparent"></div>
         </div>
         
@@ -227,7 +227,8 @@ export default function FleetPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <img 
                       src={vehicle.image} 
-                      alt={vehicle.type} 
+                      alt={`${vehicle.type} – Hellings Delivery wagenpark`}
+                      loading="lazy"
                       className="w-full h-64 sm:h-80 md:h-[400px] lg:h-[450px] object-cover transform group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className={`absolute top-6 left-6 bg-gradient-to-r ${vehicle.color} text-white px-4 py-2 rounded-full shadow-lg z-20`}>

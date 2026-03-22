@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Block temp/private pages
+Disallow: /wagenpark
+
+Sitemap: https://hellingsdelivery.nl/sitemap.xml

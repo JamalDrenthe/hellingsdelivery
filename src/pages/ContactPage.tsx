@@ -3,6 +3,16 @@ import {
   Phone, Mail, MapPin, Clock, Send, CheckCircle, AlertCircle, Loader2
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import SeoHead from '../components/SeoHead';
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': [
+    { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://hellingsdelivery.nl' },
+    { '@type': 'ListItem', 'position': 2, 'name': 'Contact', 'item': 'https://hellingsdelivery.nl/contact' }
+  ]
+};
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -84,10 +94,17 @@ export default function ContactPage() {
 
   return (
     <div>
+      <SeoHead
+        title="Contact & Offerte Aanvragen | Hellings Delivery"
+        description="Neem contact op met Hellings Delivery voor een vrijblijvende offerte. Bereikbaar via telefoon, e-mail of het contactformulier. 24/7 voor spoedgevallen."
+        canonical="https://hellingsdelivery.nl/contact"
+        jsonLd={breadcrumbJsonLd}
+      />
+
       {/* Hero Section */}
       <section className="relative bg-[#0a0a0a] min-h-[60vh] flex items-center pt-24 lg:pt-20 overflow-hidden">
         <div className="absolute inset-0">
-          <img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=2074&auto=format&fit=crop" alt="Contact Background" className="w-full h-full object-cover opacity-20" />
+          <img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=2074&auto=format&fit=crop" alt="Contact Hellings Delivery voor luxe vervoer" loading="lazy" className="w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#111] via-[#111]/80 to-transparent"></div>
         </div>
         

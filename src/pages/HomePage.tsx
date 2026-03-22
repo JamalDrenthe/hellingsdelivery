@@ -5,6 +5,7 @@ import {
   UserCheck, ShieldAlert, Lock, CheckCircle, 
   Star, ArrowRight, Clock, MapPin
 } from 'lucide-react';
+import SeoHead from '../components/SeoHead';
 
 // Typewriter Effect Component
 function TypewriterText() {
@@ -70,10 +71,16 @@ export default function HomePage() {
 
   return (
     <div>
+      <SeoHead
+        title="Hellings Delivery | Luxe & Veilig Vervoer in Nederland"
+        description="Hellings Delivery: exclusieve koeriers- en vervoersdiensten. VIP vervoer, discreet transport en zorgvervoer in Nederland en België. 24/7 beschikbaar."
+        canonical="https://hellingsdelivery.nl"
+      />
+
       {/* Hero Section */}
       <section className="relative bg-[#0a0a0a] min-h-screen flex items-center pt-24 lg:pt-20 overflow-hidden">
         <div className="absolute inset-0">
-          <img src="https://images.unsplash.com/photo-1586528116311-ad8ed3c8d90c?q=80&w=2070&auto=format&fit=crop" alt="Hero Background" className="w-full h-full object-cover opacity-20" />
+          <img src="https://images.unsplash.com/photo-1586528116311-ad8ed3c8d90c?q=80&w=2070&auto=format&fit=crop" alt="Hellings Delivery luxe vervoer achtergrond" className="w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#111] via-[#111]/80 to-transparent"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-[#111] to-transparent lg:bg-none"></div>
         </div>
@@ -133,7 +140,8 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
                 <img 
                   src="/images/stock photos/hd_stock_photo_01.png" 
-                  alt="Luxe Vervoer" 
+                  alt="Hellings Delivery chauffeur bij luxe vervoersvoertuig" 
+                  loading="lazy"
                   className="w-full h-64 sm:h-80 md:h-[400px] lg:h-[600px] object-cover transform group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
@@ -298,7 +306,8 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-black/10 z-10"></div>
           <img 
             src="/images/stock photos/hd_stock_photo_02.png" 
-            alt="Beveiligd Transport" 
+            alt="Beveiligd en vertrouwelijk transport door Hellings Delivery" 
+            loading="lazy"
             className="absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition-transform duration-1000"
           />
         </div>
@@ -352,7 +361,8 @@ export default function HomePage() {
                  <div className="absolute inset-0 bg-gradient-to-tr from-[#f04e23] to-[#F38A31] rounded-3xl transform rotate-6 scale-105 opacity-20 blur-lg"></div>
                  <img 
                     src="/images/stock photos/hd_stock_photo_03.png" 
-                    alt="Luxe Wagenpark" 
+                    alt="Luxe wagenpark van Hellings Delivery" 
+                    loading="lazy"
                     className="w-full h-auto object-cover rounded-3xl shadow-2xl relative z-10 border-4 border-white"
                   />
                </div>
@@ -411,7 +421,8 @@ export default function HomePage() {
             <div className="w-full lg:w-1/3 -mb-16 lg:mb-0 lg:-mr-12 relative z-20 flex justify-center">
                <img 
                 src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop" 
-                alt="Happy Customer" 
+                alt="Tevreden klant van Hellings Delivery" 
+                loading="lazy"
                 className="w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 object-cover rounded-full border-[6px] md:border-[10px] lg:border-[12px] border-white shadow-xl"
               />
             </div>
@@ -446,7 +457,7 @@ export default function HomePage() {
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black via-[#111] to-transparent z-10 block lg:hidden"></div>
         
         <div className="absolute inset-0 z-0 opacity-40 mix-blend-overlay">
-           <img src="https://images.unsplash.com/photo-1580674285054-bed31e145f59?q=80&w=2070&auto=format&fit=crop" className="w-full h-full object-cover object-center lg:object-top" alt="Background" />
+           <img src="https://images.unsplash.com/photo-1580674285054-bed31e145f59?q=80&w=2070&auto=format&fit=crop" className="w-full h-full object-cover object-center lg:object-top" alt="Hellings Delivery spoedvervoer en bereikbaarheid" loading="lazy" />
         </div>
 
         <div className="container mx-auto relative z-20 flex flex-col lg:flex-row items-center">
