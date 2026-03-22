@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { 
-  Phone, Mail, MapPin, Clock, Send, CheckCircle
+  Phone, Mail, MapPin, Clock, Send, CheckCircle, AlertCircle, Loader2
 } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -12,18 +13,42 @@ export default function ContactPage() {
     bericht: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(null);
+
     if (!formData.naam || !formData.email || !formData.telefoon || !formData.bericht) {
-      alert('Vul alstublieft alle verplichte velden in.');
+      setError('Vul alstublieft alle verplichte velden in.');
       return;
     }
+
+    setIsLoading(true);
+
+    const { error: supabaseError } = await supabase
+      .from('contact_submissions')
+      .insert([
+        {
+          naam: formData.naam,
+          email: formData.email,
+          telefoon: formData.telefoon,
+          onderwerp: formData.onderwerp || null,
+          bericht: formData.bericht,
+        }
+      ]);
+
+    setIsLoading(false);
+
+    if (supabaseError) {
+      setError('Er is een fout opgetreden. Probeer het opnieuw of neem telefonisch contact op.');
+      console.error('Supabase error:', supabaseError);
+      return;
+    }
+
     setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ naam: '', email: '', telefoon: '', onderwerp: '', bericht: '' });
-    }, 3000);
+    setFormData({ naam: '', email: '', telefoon: '', onderwerp: '', bericht: '' });
   };
 
   const contactInfo = [
@@ -131,7 +156,15 @@ export default function ContactPage() {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <>
+                {error && (
+                  <div className="bg-red-50 border border-red-200 rounded-2xl p-4 flex items-start mb-6">
+                    <AlertCircle className="w-5 h-5 text-red-500 mr-3 flex-shrink-0 mt-0.5" />
+                    <p className="text-red-700 text-sm">{error}</p>
+                  </div>
+                )}
+
+              <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
@@ -206,15 +239,20 @@ export default function ContactPage() {
                   </div>
 
                   <button 
-                    type="submit" 
-                    className="inline-flex items-center text-white text-sm font-bold uppercase tracking-wider bg-[#111] hover:bg-gray-800 pr-2 pl-6 py-2 rounded-full transition-all duration-300 group"
+                    type="submit"
+                    disabled={isLoading}
+                    className="inline-flex items-center text-white text-sm font-bold uppercase tracking-wider bg-[#111] hover:bg-gray-800 disabled:opacity-60 disabled:cursor-not-allowed pr-2 pl-6 py-2 rounded-full transition-all duration-300 group"
                   >
-                    Verstuur Bericht
+                    {isLoading ? 'Verzenden...' : 'Verstuur Bericht'}
                     <span className="ml-4 bg-gradient-to-r from-[#f04e23] to-[#F38A31] rounded-full p-2 group-hover:scale-110 transition-transform duration-300">
-                      <Send className="w-4 h-4 text-white" />
+                      {isLoading 
+                        ? <Loader2 className="w-4 h-4 text-white animate-spin" />
+                        : <Send className="w-4 h-4 text-white" />
+                      }
                     </span>
                   </button>
                 </form>
+                </>
               )}
             </div>
 
