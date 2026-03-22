@@ -26,6 +26,7 @@ export default function Header() {
     { path: '/', label: 'Home' },
     { path: '/over-ons', label: 'Over Ons' },
     { path: '/diensten', label: 'Diensten' },
+    { path: '/prijzen', label: 'Prijzen' },
     { path: '/faq', label: 'FAQ' },
   ];
 
