@@ -148,14 +148,14 @@ export default function ProfilePage() {
           </div>
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="vatNumber" className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">BTW-nummer (optioneel)</label>
-              <input id="vatNumber" type="text" value={vatNumber} onChange={e => setVatNumber(e.target.value)} placeholder="NL123456789B01" className="w-full bg-[#1e1e1e] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-[#f04e23]/50 transition-colors" />
+              <label htmlFor="vatNumber" className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">BTW-nummer <span className="text-[#f04e23]">*</span></label>
+              <input id="vatNumber" type="text" required value={vatNumber} onChange={e => setVatNumber(e.target.value)} placeholder="NL123456789B01" className="w-full bg-[#1e1e1e] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-[#f04e23]/50 transition-colors" />
             </div>
             <div>
               <label htmlFor="kvkNumber" className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
-                <Hash className="inline w-3 h-3 mr-1" />KVK-nummer (optioneel)
+                <Hash className="inline w-3 h-3 mr-1" />KVK-nummer <span className="text-[#f04e23]">*</span>
               </label>
-              <input id="kvkNumber" type="text" value={kvkNumber} onChange={e => setKvkNumber(e.target.value)} placeholder="12345678" className="w-full bg-[#1e1e1e] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-[#f04e23]/50 transition-colors" />
+              <input id="kvkNumber" type="text" required value={kvkNumber} onChange={e => setKvkNumber(e.target.value)} placeholder="12345678" className="w-full bg-[#1e1e1e] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-[#f04e23]/50 transition-colors" />
             </div>
           </div>
         </div>
@@ -166,8 +166,8 @@ export default function ProfilePage() {
             <h2 className="text-white font-black text-sm uppercase tracking-wider">Bankgegevens</h2>
           </div>
           <div>
-            <label htmlFor="bankAccount" className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">IBAN Rekeningnummer (optioneel)</label>
-            <input id="bankAccount" type="text" value={bankAccount} onChange={e => setBankAccount(e.target.value.toUpperCase())} placeholder="NL91 ABNA 0417 1643 00" className="w-full bg-[#1e1e1e] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 text-sm font-mono focus:outline-none focus:border-[#f04e23]/50 transition-colors" />
+            <label htmlFor="bankAccount" className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">IBAN Rekeningnummer <span className="text-[#f04e23]">*</span></label>
+            <input id="bankAccount" type="text" required value={bankAccount} onChange={e => setBankAccount(e.target.value.toUpperCase())} placeholder="NL91 ABNA 0417 1643 00" className="w-full bg-[#1e1e1e] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 text-sm font-mono focus:outline-none focus:border-[#f04e23]/50 transition-colors" />
             <p className="text-gray-600 text-xs mt-2">Gebruikt voor terugbetalingen en zakelijke facturatie.</p>
           </div>
         </div>
