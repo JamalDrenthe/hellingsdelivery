@@ -13,13 +13,14 @@ Het project maakt gebruik van de volgende moderne webtechnologieën:
 - **Taal**: [TypeScript](https://www.typescriptlang.org/)
 - **Styling**: [Tailwind CSS 3](https://tailwindcss.com/)
 - **Icoontjes**: [Lucide React](https://lucide.dev/)
+- **Animaties**: [Framer Motion](https://www.framer.com/motion/)
 - **Routing**: [React Router DOM v6](https://reactrouter.com/)
 - **Database/Backend**: [Supabase](https://supabase.com/) (PostgreSQL & API)
 
 ## ✨ Belangrijkste Kenmerken
 
 - **Responsief Design**: Volledig geoptimaliseerd voor mobiel, tablet en desktop.
-- **Beveiligd Wagenpark**: Het wagenpark (FleetPage) is beveiligd met een toegangscode.
+- **Vloeiende Animaties**: Subtiele page transitions en scroll-animaties mogelijk gemaakt door Framer Motion.
 - **Interactief Contactformulier**: Gekoppeld aan Supabase database (`contact_submissions` tabel) voor real-time opslag van klantaanvragen.
 - **Geavanceerde SEO**: 
   - Dynamische per-pagina metadata via een custom `<SeoHead />` component.
@@ -43,8 +44,8 @@ app/
 │   │   ├── layout/         # Header, Footer
 │   │   ├── SeoHead.tsx     # Dynamische SEO meta tags injector
 │   │   └── ui/             # Knoppen, Cards, etc.
-│   ├── lib/                # Externe library configuraties (Supabase client)
-│   ├── pages/              # Pagina componenten (Home, About, FAQ, Fleet, Contact)
+│   ├── lib/                # Externe library configuraties (Supabase client, framer-motion animaties)
+│   ├── pages/              # Pagina componenten (Home, About, FAQ, Contact)
 │   ├── App.tsx             # Hoofd applicatie component (Routing setup)
 │   └── main.tsx            # React entry point
 ├── supabase/               # Supabase database migraties en schema's
@@ -96,9 +97,6 @@ Om een geoptimaliseerde productie build te maken:
 npm run build
 ```
 De gegenereerde bestanden komen in de `dist/` map terecht, klaar om gedeployed te worden.
-
-## 🔒 Toegangscodes
-- **Wagenpark (/wagenpark)**: De pagina is beveiligd. De standaard testcode is `2106`.
 
 ## 📄 Licentie & Rechten
 © 2026 Hellings Delivery. Alle rechten voorbehouden.
