@@ -5,7 +5,7 @@ import { fadeUp, fadeLeft, fadeRight, scaleIn, staggerContainer, staggerChild, v
 import { 
   ChevronRight, Package, ShieldCheck, Briefcase,
   UserCheck, ShieldAlert, Lock, CheckCircle, 
-  Star, ArrowRight, Clock, MapPin
+  Star, ArrowRight, Clock, MapPin, Gem
 } from 'lucide-react';
 import SeoHead from '../components/SeoHead';
 
