@@ -3,6 +3,9 @@
 -- Run this in Supabase Dashboard > SQL Editor
 -- ============================================================
 
+-- 0. EXTENSIONS
+CREATE EXTENSION IF NOT EXISTS "pgcrypto";
+
 -- 1. PROFILES
 CREATE TABLE IF NOT EXISTS profiles (
     id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
@@ -11,16 +14,18 @@ CREATE TABLE IF NOT EXISTS profiles (
     phone TEXT,
     billing_address JSONB,
     vat_number TEXT,
+    kvk_number TEXT,
+    bank_account TEXT,
     preferred_payment_method TEXT,
     created_at TIMESTAMPTZ DEFAULT now(),
     updated_at TIMESTAMPTZ DEFAULT now()
 );
 
 ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
-DROP POLICY IF EXISTS "Users can view own profile" ON profiles;
-DROP POLICY IF EXISTS "Users can update own profile" ON profiles;
-CREATE POLICY "Users can view own profile" ON profiles FOR SELECT USING (auth.uid() = id);
-CREATE POLICY "Users can update own profile" ON profiles FOR UPDATE USING (auth.uid() = id);
+DROP POLICY IF EXISTS users_view_own_profile ON profiles;
+DROP POLICY IF EXISTS users_update_own_profile ON profiles;
+CREATE POLICY users_view_own_profile ON profiles FOR SELECT USING (auth.uid() = id);
+CREATE POLICY users_update_own_profile ON profiles FOR UPDATE USING (auth.uid() = id);
 
 -- Trigger: auto-create profile on new auth user
 CREATE OR REPLACE FUNCTION public.handle_new_user()
@@ -39,9 +44,12 @@ CREATE TRIGGER on_auth_user_created
     FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();
 
 -- 2. PRODUCTS
-DO $$ BEGIN
-  CREATE TYPE product_type AS ENUM ('physical', 'digital', 'bundle');
-EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'product_type') THEN
+    CREATE TYPE product_type AS ENUM ('physical', 'digital', 'bundle');
+  END IF;
+END$$;
 
 CREATE TABLE IF NOT EXISTS products (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -57,13 +65,16 @@ CREATE TABLE IF NOT EXISTS products (
 );
 
 ALTER TABLE products ENABLE ROW LEVEL SECURITY;
-DROP POLICY IF EXISTS "Anyone can view active products" ON products;
-CREATE POLICY "Anyone can view active products" ON products FOR SELECT USING (is_active = true);
+DROP POLICY IF EXISTS anyone_can_view_active_products ON products;
+CREATE POLICY anyone_can_view_active_products ON products FOR SELECT USING (is_active = true);
 
 -- 3. SUBSCRIPTION PLANS
-DO $$ BEGIN
-  CREATE TYPE billing_interval AS ENUM ('month', 'quarter', 'year');
-EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'billing_interval') THEN
+    CREATE TYPE billing_interval AS ENUM ('month', 'quarter', 'year');
+  END IF;
+END$$;
 
 CREATE TABLE IF NOT EXISTS subscription_plans (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -77,13 +88,16 @@ CREATE TABLE IF NOT EXISTS subscription_plans (
 );
 
 ALTER TABLE subscription_plans ENABLE ROW LEVEL SECURITY;
-DROP POLICY IF EXISTS "Anyone can view active plans" ON subscription_plans;
-CREATE POLICY "Anyone can view active plans" ON subscription_plans FOR SELECT USING (is_active = true);
+DROP POLICY IF EXISTS anyone_can_view_active_plans ON subscription_plans;
+CREATE POLICY anyone_can_view_active_plans ON subscription_plans FOR SELECT USING (is_active = true);
 
 -- 4. CUSTOMER SUBSCRIPTIONS
-DO $$ BEGIN
-  CREATE TYPE subscription_status AS ENUM ('active', 'paused', 'canceled', 'past_due');
-EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'subscription_status') THEN
+    CREATE TYPE subscription_status AS ENUM ('active', 'paused', 'canceled', 'past_due');
+  END IF;
+END$$;
 
 CREATE TABLE IF NOT EXISTS customer_subscriptions (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -99,14 +113,17 @@ CREATE TABLE IF NOT EXISTS customer_subscriptions (
 );
 
 ALTER TABLE customer_subscriptions ENABLE ROW LEVEL SECURITY;
-DROP POLICY IF EXISTS "Users can view own subscriptions" ON customer_subscriptions;
-CREATE POLICY "Users can view own subscriptions" ON customer_subscriptions
+DROP POLICY IF EXISTS users_view_own_subscriptions ON customer_subscriptions;
+CREATE POLICY users_view_own_subscriptions ON customer_subscriptions
     FOR SELECT USING (auth.uid() = customer_id);
 
 -- 5. ORDERS
-DO $$ BEGIN
-  CREATE TYPE order_status AS ENUM ('pending', 'paid', 'failed', 'refunded');
-EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'order_status') THEN
+    CREATE TYPE order_status AS ENUM ('pending', 'paid', 'failed', 'refunded');
+  END IF;
+END$$;
 
 CREATE TABLE IF NOT EXISTS orders (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -122,12 +139,10 @@ CREATE TABLE IF NOT EXISTS orders (
 );
 
 ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
-DROP POLICY IF EXISTS "Users can view own orders" ON orders;
-DROP POLICY IF EXISTS "Users can insert own orders" ON orders;
-CREATE POLICY "Users can view own orders" ON orders
-    FOR SELECT USING (auth.uid() = customer_id);
-CREATE POLICY "Users can insert own orders" ON orders
-    FOR INSERT WITH CHECK (auth.uid() = customer_id);
+DROP POLICY IF EXISTS users_view_own_orders ON orders;
+DROP POLICY IF EXISTS users_insert_own_orders ON orders;
+CREATE POLICY users_view_own_orders ON orders FOR SELECT USING (auth.uid() = customer_id);
+CREATE POLICY users_insert_own_orders ON orders FOR INSERT WITH CHECK (auth.uid() = customer_id);
 
 -- 6. ORDER ITEMS
 CREATE TABLE IF NOT EXISTS order_items (
@@ -145,8 +160,8 @@ CREATE TABLE IF NOT EXISTS order_items (
 );
 
 ALTER TABLE order_items ENABLE ROW LEVEL SECURITY;
-DROP POLICY IF EXISTS "Users can view own order items" ON order_items;
-CREATE POLICY "Users can view own order items" ON order_items
+DROP POLICY IF EXISTS users_view_own_order_items ON order_items;
+CREATE POLICY users_view_own_order_items ON order_items
     FOR SELECT USING (
         EXISTS (
             SELECT 1 FROM orders
