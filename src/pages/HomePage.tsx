@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { 
   ChevronRight, Gem, ShieldCheck, HeartHandshake, 
   UserCheck, ShieldAlert, Lock, CheckCircle, 
-  Star, ArrowRight, Clock, MapPin, ChevronLeft
+  Star, ArrowRight, Clock, MapPin
 } from 'lucide-react';
 
 // Typewriter Effect Component
