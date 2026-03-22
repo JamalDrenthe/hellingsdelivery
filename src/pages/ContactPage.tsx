@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { fadeLeft, staggerContainer, staggerChild, viewportOnce } from '../lib/animations';
 import { 
   Send, CheckCircle, AlertCircle, Loader2
 } from 'lucide-react';
@@ -78,19 +80,24 @@ export default function ContactPage() {
         </div>
         
         <div className="container mx-auto px-4 md:px-8 relative z-10 py-20">
-          <div className="max-w-3xl">
-            <div className="flex items-center space-x-4 mb-6">
+          <motion.div
+            className="max-w-3xl"
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.div variants={staggerChild} className="flex items-center space-x-4 mb-6">
               <div className="w-8 md:w-12 h-[3px] bg-[#f04e23] rounded-full"></div>
               <span className="text-white tracking-[0.2em] text-xs md:text-sm font-bold uppercase">Contact</span>
-            </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] mb-6 tracking-tight uppercase">
+            </motion.div>
+            <motion.h1 variants={staggerChild} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] mb-6 tracking-tight uppercase">
               Neem Contact<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f04e23] to-[#F38A31]">Met Ons Op</span>
-            </h1>
-            <p className="text-gray-400 text-sm sm:text-base md:text-lg max-w-xl leading-relaxed font-light">
+            </motion.h1>
+            <motion.p variants={staggerChild} className="text-gray-400 text-sm sm:text-base md:text-lg max-w-xl leading-relaxed font-light">
               Heeft u vragen of wilt u een vrijblijvende offerte aanvragen? Vul het formulier in en wij nemen zo snel mogelijk contact met u op.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
         </div>
       </section>
 
@@ -100,7 +107,13 @@ export default function ContactPage() {
           <div className="flex flex-col gap-12">
             
             {/* Form */}
-            <div className="w-full max-w-3xl">
+            <motion.div
+              className="w-full max-w-3xl"
+              variants={fadeLeft}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+            >
               <div className="flex items-center space-x-4 mb-4">
                 <div className="w-8 md:w-12 h-[3px] bg-gray-300 rounded-full"></div>
                 <span className="text-gray-500 tracking-[0.2em] text-xs md:text-sm font-bold uppercase">Stuur Ons Een Bericht</span>
@@ -218,7 +231,7 @@ export default function ContactPage() {
                 </form>
                 </>
               )}
-            </div>
+            </motion.div>
 
           </div>
         </div>

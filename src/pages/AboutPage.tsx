@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { fadeUp, fadeLeft, fadeRight, scaleIn, staggerContainer, staggerChild, viewportOnce } from '../lib/animations';
 import { 
   Shield, Clock, Gem, Target, Eye, ChevronRight 
 } from 'lucide-react';
@@ -62,19 +64,24 @@ export default function AboutPage() {
         </div>
         
         <div className="container mx-auto px-4 md:px-8 relative z-10 py-20">
-          <div className="max-w-3xl">
-            <div className="flex items-center space-x-4 mb-6">
+          <motion.div
+            className="max-w-3xl"
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.div variants={staggerChild} className="flex items-center space-x-4 mb-6">
               <div className="w-8 md:w-12 h-[3px] bg-[#f04e23] rounded-full"></div>
               <span className="text-white tracking-[0.2em] text-xs md:text-sm font-bold uppercase">Over Ons</span>
-            </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] mb-6 tracking-tight uppercase">
+            </motion.div>
+            <motion.h1 variants={staggerChild} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] mb-6 tracking-tight uppercase">
               Ons Verhaal &<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f04e23] to-[#F38A31]">Missie</span>
-            </h1>
-            <p className="text-gray-400 text-sm sm:text-base md:text-lg max-w-xl leading-relaxed font-light">
+            </motion.h1>
+            <motion.p variants={staggerChild} className="text-gray-400 text-sm sm:text-base md:text-lg max-w-xl leading-relaxed font-light">
               Van een klein familiebedrijf tot een toonaangevende speler in exclusief vervoer. Ontdek wie wij zijn en wat ons drijft.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
         </div>
       </section>
 
@@ -84,7 +91,13 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 md:px-8 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
             
-            <div className="w-full lg:w-1/2 relative px-2 sm:px-8 lg:px-0">
+            <motion.div
+              className="w-full lg:w-1/2 relative px-2 sm:px-8 lg:px-0"
+              variants={fadeLeft}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+            >
               <div className="relative rounded-[2rem] overflow-hidden shadow-2xl shadow-gray-200 group">
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
                 <img 
@@ -97,9 +110,15 @@ export default function AboutPage() {
                 <span className="text-3xl md:text-4xl font-black">30 jaar</span>
                 <span className="text-xs md:text-sm font-bold uppercase tracking-widest">Jaar Ervaring</span>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="w-full lg:w-1/2 text-center lg:text-left mt-8 lg:mt-0">
+            <motion.div
+              className="w-full lg:w-1/2 text-center lg:text-left mt-8 lg:mt-0"
+              variants={fadeRight}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+            >
               <div className="flex items-center justify-center lg:justify-start space-x-4 mb-6">
                 <div className="w-8 md:w-12 h-[3px] bg-gray-300 rounded-full"></div>
                 <span className="text-gray-500 tracking-[0.2em] text-xs md:text-sm font-bold uppercase">Ons Verhaal</span>
@@ -119,7 +138,7 @@ export default function AboutPage() {
                   Bij Hellings Delivery geloven we dat geen enkele opdracht hetzelfde is. Daarom denken wij in oplossingen, niet in standaardpakketten. Elke rit, elke zending, elke klant verdient maatwerk.
                 </p>
               </div>
-            </div>
+            </motion.div>
 
           </div>
         </div>
@@ -128,10 +147,15 @@ export default function AboutPage() {
       {/* Mission & Vision Section */}
       <section className="py-20 lg:py-32 bg-white">
         <div className="container mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-            
+          <motion.div
+            className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+          >
             {/* Mission */}
-            <div className="bg-gray-50 p-8 md:p-12 rounded-[2rem] md:rounded-[40px] relative overflow-hidden group hover:shadow-xl transition-shadow duration-500">
+            <motion.div variants={fadeLeft} className="bg-gray-50 p-8 md:p-12 rounded-[2rem] md:rounded-[40px] relative overflow-hidden group hover:shadow-xl transition-shadow duration-500">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#f04e23]/5 rounded-full blur-2xl -mr-10 -mt-10"></div>
               <div className="relative z-10">
                 <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-[#f04e23] to-[#F38A31] rounded-2xl flex items-center justify-center mb-6 md:mb-8 shadow-lg shadow-[#f04e23]/30">
@@ -142,10 +166,10 @@ export default function AboutPage() {
                   Wij streven ernaar het meest betrouwbare en discrete vervoersbedrijf van Nederland en België te zijn. Door onze klanten een ongeëvenaarde service te bieden, waarbij veiligheid, comfort en privacy centraal staan, bouwen wij aan duurzame relaties gebaseerd op vertrouwen.
                 </p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Vision */}
-            <div className="bg-[#0a0a0a] p-8 md:p-12 rounded-[2rem] md:rounded-[40px] relative overflow-hidden group hover:shadow-xl transition-shadow duration-500">
+            <motion.div variants={fadeRight} className="bg-[#0a0a0a] p-8 md:p-12 rounded-[2rem] md:rounded-[40px] relative overflow-hidden group hover:shadow-xl transition-shadow duration-500">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#f04e23]/10 rounded-full blur-2xl -mr-10 -mt-10"></div>
               <div className="relative z-10">
                 <div className="w-16 h-16 md:w-20 md:h-20 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6 md:mb-8 border border-white/20">
@@ -156,9 +180,9 @@ export default function AboutPage() {
                   Wij zien een toekomst waarin exclusief vervoer toegankelijk is voor iedereen die waarde hecht aan kwaliteit en discretie. Door continu te innoveren en te investeren in ons team en wagenpark, blijven wij de standaard zetten in de branche. Waar anderen stoppen, gaan wij verder.
                 </p>
               </div>
-            </div>
+            </motion.div>
 
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -166,7 +190,13 @@ export default function AboutPage() {
       <section className="py-20 lg:py-32 bg-gray-50">
         <div className="container mx-auto px-4 md:px-8">
           
-          <div className="text-center mb-16 lg:mb-20">
+          <motion.div
+            className="text-center mb-16 lg:mb-20"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+          >
             <div className="flex items-center justify-center space-x-4 mb-4 md:mb-6">
               <div className="w-8 md:w-12 h-[3px] bg-gray-300 rounded-full"></div>
               <span className="text-gray-500 tracking-[0.2em] text-xs md:text-sm font-bold uppercase">Waarden</span>
@@ -175,11 +205,17 @@ export default function AboutPage() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#111] uppercase">
               Onze <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f04e23] to-[#F38A31]">Kernwaarden</span>
             </h2>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+          >
             {coreValues.map((value, index) => (
-              <div key={index} className="bg-white p-8 md:p-10 rounded-[2rem] shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group">
+              <motion.div variants={staggerChild} key={index} className="bg-white p-8 md:p-10 rounded-[2rem] shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group">
                 <div className="flex items-start gap-6">
                   <div className="w-14 h-14 md:w-16 md:h-16 bg-[#f04e23]/10 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-[#f04e23] transition-colors duration-300">
                     <value.icon className="w-7 h-7 md:w-8 md:h-8 text-[#f04e23] group-hover:text-white transition-colors duration-300" />
@@ -189,9 +225,9 @@ export default function AboutPage() {
                     <p className="text-gray-500 text-sm md:text-base leading-relaxed font-light">{value.description}</p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -200,18 +236,24 @@ export default function AboutPage() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[800px] bg-[#f04e23]/5 rounded-full blur-[120px] pointer-events-none"></div>
         
         <div className="container mx-auto px-4 md:px-8 relative z-10">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+          <motion.div
+            className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+          >
             {stats.map((stat, index) => (
-              <div key={index} className="text-center group">
+              <motion.div variants={scaleIn} key={index} className="text-center group">
                 <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-2 group-hover:text-[#f04e23] transition-colors duration-300">
                   {stat.value}
                 </div>
                 <div className="text-gray-400 text-xs md:text-sm uppercase tracking-[0.2em] font-bold">
                   {stat.label}
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -226,7 +268,13 @@ export default function AboutPage() {
 
         <div className="container mx-auto relative z-20 flex flex-col lg:flex-row items-center">
           
-          <div className="w-full lg:w-2/3 py-20 lg:py-32 px-4 md:px-8 text-center lg:text-left">
+          <motion.div
+            className="w-full lg:w-2/3 py-20 lg:py-32 px-4 md:px-8 text-center lg:text-left"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+          >
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white uppercase leading-[1.2] lg:leading-[1.1] mb-8 lg:mb-10 drop-shadow-2xl">
               Werken bij<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f04e23] to-[#F38A31]">Hellings Delivery?</span>
@@ -240,7 +288,7 @@ export default function AboutPage() {
                 <ChevronRight className="w-4 h-4 md:w-5 md:h-5 text-white" />
               </span>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
     </div>

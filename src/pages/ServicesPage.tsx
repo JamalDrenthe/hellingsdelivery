@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { fadeUp, fadeLeft, fadeRight, scaleIn, staggerContainer, staggerChild, viewportOnce } from '../lib/animations';
 import { 
   Package, ShieldCheck, Briefcase,
   ChevronRight, CheckCircle, Clock, Shield, UserCheck
@@ -106,19 +108,24 @@ export default function ServicesPage() {
         </div>
         
         <div className="container mx-auto px-4 md:px-8 relative z-10 py-20">
-          <div className="max-w-3xl">
-            <div className="flex items-center space-x-4 mb-6">
+          <motion.div
+            className="max-w-3xl"
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.div variants={staggerChild} className="flex items-center space-x-4 mb-6">
               <div className="w-8 md:w-12 h-[3px] bg-[#f04e23] rounded-full"></div>
               <span className="text-white tracking-[0.2em] text-xs md:text-sm font-bold uppercase">Onze Diensten</span>
-            </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] mb-6 tracking-tight uppercase">
+            </motion.div>
+            <motion.h1 variants={staggerChild} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] mb-6 tracking-tight uppercase">
               Maatwerk in<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f04e23] to-[#F38A31]">Vervoer</span>
-            </h1>
-            <p className="text-gray-400 text-sm sm:text-base md:text-lg max-w-xl leading-relaxed font-light">
+            </motion.h1>
+            <motion.p variants={staggerChild} className="text-gray-400 text-sm sm:text-base md:text-lg max-w-xl leading-relaxed font-light">
               Van luxe VIP-vervoer tot discrete koeriersdiensten. Ontdek ons uitgebreide aanbod aan exclusieve vervoersoplossingen.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
         </div>
       </section>
 
@@ -127,10 +134,16 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4 md:px-8">
           <div className="space-y-20 lg:space-y-32">
             {services.map((service, index) => (
-              <div key={index} className={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 lg:gap-20 items-center`}>
-                
+              <motion.div
+                key={index}
+                className={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 lg:gap-20 items-center`}
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewportOnce}
+              >
                 {/* Image */}
-                <div className="w-full lg:w-1/2">
+                <motion.div variants={index % 2 === 1 ? fadeRight : fadeLeft} className="w-full lg:w-1/2">
                   <div className="relative rounded-[2rem] overflow-hidden shadow-2xl shadow-gray-200 group">
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <img 
@@ -142,10 +155,10 @@ export default function ServicesPage() {
                       <service.icon className="w-8 h-8" />
                     </div>
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Content */}
-                <div className="w-full lg:w-1/2">
+                <motion.div variants={index % 2 === 1 ? fadeLeft : fadeRight} className="w-full lg:w-1/2">
                   <div className="flex items-center space-x-4 mb-4">
                     <div className="w-8 md:w-12 h-[3px] bg-gray-300 rounded-full"></div>
                     <span className="text-gray-500 tracking-[0.2em] text-xs md:text-sm font-bold uppercase">Dienst {index + 1}</span>
@@ -178,9 +191,9 @@ export default function ServicesPage() {
                       <ChevronRight className="w-4 h-4 text-white" />
                     </span>
                   </Link>
-                </div>
+                </motion.div>
 
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -190,7 +203,13 @@ export default function ServicesPage() {
       <section className="py-20 lg:py-32 bg-gray-50">
         <div className="container mx-auto px-4 md:px-8">
           
-          <div className="text-center mb-16 lg:mb-20">
+          <motion.div
+            className="text-center mb-16 lg:mb-20"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+          >
             <div className="flex items-center justify-center space-x-4 mb-4 md:mb-6">
               <div className="w-8 md:w-12 h-[3px] bg-gray-300 rounded-full"></div>
               <span className="text-gray-500 tracking-[0.2em] text-xs md:text-sm font-bold uppercase">Hoe Het Werkt</span>
@@ -199,11 +218,17 @@ export default function ServicesPage() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#111] uppercase">
               Ons <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f04e23] to-[#F38A31]">Proces</span>
             </h2>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+          >
             {process.map((step, index) => (
-              <div key={index} className="relative">
+              <motion.div variants={staggerChild} key={index} className="relative">
                 <div className="bg-white p-8 md:p-10 rounded-[2rem] shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 h-full group">
                   <div className="text-5xl md:text-6xl font-black text-gray-100 group-hover:text-[#f04e23]/20 transition-colors duration-300 mb-4">
                     {step.step}
@@ -220,9 +245,9 @@ export default function ServicesPage() {
                     <ChevronRight className="w-8 h-8 text-gray-300" />
                   </div>
                 )}
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 

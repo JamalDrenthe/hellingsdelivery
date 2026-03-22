@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { fadeUp, fadeLeft, fadeRight, scaleIn, staggerContainer, staggerChild, viewportOnce } from '../lib/animations';
 import { 
   ChevronRight, Package, ShieldCheck, Briefcase,
   UserCheck, ShieldAlert, Lock, CheckCircle, 
@@ -88,29 +90,42 @@ export default function HomePage() {
         <div className="container mx-auto px-4 md:px-8 relative z-10 py-12 lg:py-20">
           <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start">
             
-            <div className="w-full lg:max-w-2xl mb-12 lg:mb-0 flex flex-col items-center lg:items-start text-center lg:text-left">
-              <div className="flex items-center space-x-4 mb-6">
+            <motion.div
+              className="w-full lg:max-w-2xl mb-12 lg:mb-0 flex flex-col items-center lg:items-start text-center lg:text-left"
+              variants={staggerContainer}
+              initial="hidden"
+              animate="visible"
+            >
+              <motion.div variants={staggerChild} className="flex items-center space-x-4 mb-6">
                 <div className="w-8 md:w-12 h-[3px] bg-[#f04e23] rounded-full"></div>
                 <span className="text-white tracking-[0.2em] text-xs md:text-sm font-bold uppercase">Discreet & Betrouwbaar Vervoer</span>
-              </div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black text-white leading-[1.1] mb-6 tracking-tight uppercase drop-shadow-2xl min-h-[3em]">
+              </motion.div>
+              <motion.h1 variants={staggerChild} className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black text-white leading-[1.1] mb-6 tracking-tight uppercase drop-shadow-2xl min-h-[3em]">
                 <TypewriterText />
-              </h1>
+              </motion.h1>
               
-              <p className="text-gray-400 text-sm sm:text-base md:text-lg lg:text-xl max-w-lg mb-8 lg:mb-10 leading-relaxed font-light mx-auto lg:mx-0">
+              <motion.p variants={staggerChild} className="text-gray-400 text-sm sm:text-base md:text-lg lg:text-xl max-w-lg mb-8 lg:mb-10 leading-relaxed font-light mx-auto lg:mx-0">
                 Een exclusieve service voor goederen en personen waarbij zorgvuldigheid, veiligheid en absolute discretie centraal staan.
-              </p>
+              </motion.p>
               
-              <Link to="/contact" className="inline-flex items-center text-white text-xs sm:text-sm md:text-base font-bold uppercase tracking-wider group bg-white/5 hover:bg-white/10 pr-2 pl-6 md:pl-8 py-2 rounded-full backdrop-blur-sm border border-white/10 transition-all duration-300 hover:shadow-lg hover:shadow-[#f04e23]/20">
-                Plan een Rit 
-                <span className="ml-4 md:ml-6 bg-gradient-to-r from-[#f04e23] to-[#F38A31] rounded-full p-2 md:p-3 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <ChevronRight className="w-4 h-4 md:w-5 md:h-5 text-white" />
-                </span>
-              </Link>
-            </div>
+              <motion.div variants={staggerChild}>
+                <Link to="/contact" className="inline-flex items-center text-white text-xs sm:text-sm md:text-base font-bold uppercase tracking-wider group bg-white/5 hover:bg-white/10 pr-2 pl-6 md:pl-8 py-2 rounded-full backdrop-blur-sm border border-white/10 transition-all duration-300 hover:shadow-lg hover:shadow-[#f04e23]/20">
+                  Plan een Rit 
+                  <span className="ml-4 md:ml-6 bg-gradient-to-r from-[#f04e23] to-[#F38A31] rounded-full p-2 md:p-3 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                    <ChevronRight className="w-4 h-4 md:w-5 md:h-5 text-white" />
+                  </span>
+                </Link>
+              </motion.div>
+            </motion.div>
 
             {/* Stats */}
-            <div className="w-full lg:w-auto grid grid-cols-3 lg:grid-cols-1 gap-4 lg:gap-10 text-center lg:text-right lg:pr-12 backdrop-blur-md bg-white/5 p-4 sm:p-6 lg:p-8 rounded-2xl md:rounded-3xl border border-white/10">
+            <motion.div
+              variants={fadeRight}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 0.4 }}
+              className="w-full lg:w-auto grid grid-cols-3 lg:grid-cols-1 gap-4 lg:gap-10 text-center lg:text-right lg:pr-12 backdrop-blur-md bg-white/5 p-4 sm:p-6 lg:p-8 rounded-2xl md:rounded-3xl border border-white/10"
+            >
               <div className="group cursor-default">
                 <div className="text-gray-400 text-[9px] sm:text-[10px] md:text-xs tracking-[0.1em] sm:tracking-[0.2em] font-bold uppercase mb-1 md:mb-2 group-hover:text-[#f04e23] transition-colors">Bereikbaar</div>
                 <div className="text-2xl sm:text-3xl md:text-5xl font-black text-white drop-shadow-lg">24/7</div>
@@ -123,7 +138,7 @@ export default function HomePage() {
                 <div className="text-gray-400 text-[9px] sm:text-[10px] md:text-xs tracking-[0.1em] sm:tracking-[0.2em] font-bold uppercase mb-1 md:mb-2 group-hover:text-[#f04e23] transition-colors">Discretie</div>
                 <div className="text-2xl sm:text-3xl md:text-5xl font-black text-white drop-shadow-lg">100<span className="text-[#f04e23] ml-1">%</span></div>
               </div>
-            </div>
+            </motion.div>
 
           </div>
         </div>
@@ -135,7 +150,13 @@ export default function HomePage() {
         <div className="container mx-auto px-4 md:px-8 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
             
-            <div className="w-full lg:w-1/2 relative px-2 sm:px-8 lg:px-0">
+            <motion.div
+              className="w-full lg:w-1/2 relative px-2 sm:px-8 lg:px-0"
+              variants={fadeLeft}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+            >
               <div className="relative rounded-[2rem] overflow-hidden shadow-2xl shadow-gray-200 group">
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
                 <img 
@@ -149,9 +170,15 @@ export default function HomePage() {
                 <Lock className="w-8 h-8 md:w-12 md:h-12 mb-2" />
                 <span className="text-sm md:text-base font-black uppercase tracking-widest text-center leading-tight">100%<br/>Maatwerk</span>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="w-full lg:w-1/2 text-center lg:text-left mt-8 lg:mt-0">
+            <motion.div
+              className="w-full lg:w-1/2 text-center lg:text-left mt-8 lg:mt-0"
+              variants={fadeRight}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+            >
               <div className="flex items-center justify-center lg:justify-start space-x-4 mb-6">
                 <div className="w-8 md:w-12 h-[3px] bg-gray-300 rounded-full"></div>
                 <span className="text-gray-500 tracking-[0.2em] text-xs md:text-sm font-bold uppercase">Bedrijfsprofiel</span>
@@ -175,7 +202,7 @@ export default function HomePage() {
                   <CheckCircle className="w-5 h-5 text-[#f04e23] mr-2" /> Flexibel
                 </div>
               </div>
-            </div>
+            </motion.div>
 
           </div>
         </div>
@@ -186,7 +213,13 @@ export default function HomePage() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[800px] bg-[#f04e23]/5 rounded-full blur-[120px] pointer-events-none"></div>
 
         <div className="container mx-auto px-4 md:px-8 relative z-10">
-          <div className="text-center mb-16 lg:mb-20">
+          <motion.div
+            className="text-center mb-16 lg:mb-20"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+          >
             <div className="flex items-center justify-center space-x-4 mb-4 md:mb-6">
               <div className="w-8 md:w-12 h-[3px] bg-[#f04e23] rounded-full text-transparent"></div>
               <span className="text-[#f04e23] tracking-[0.2em] text-xs md:text-sm font-bold uppercase">Onze Diensten</span>
@@ -195,11 +228,17 @@ export default function HomePage() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white uppercase">
               Discreet Transport &amp; <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f04e23] to-[#F38A31]">Doordachte Logistiek</span>
             </h2>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+          >
             {/* Card 1 */}
-            <div className="bg-[#151515] border border-white/5 rounded-3xl p-8 lg:p-10 text-center hover:-translate-y-2 lg:hover:-translate-y-3 hover:shadow-2xl hover:shadow-[#f04e23]/10 hover:border-white/10 transition-all duration-500 group relative overflow-hidden">
+            <motion.div variants={staggerChild} className="bg-[#151515] border border-white/5 rounded-3xl p-8 lg:p-10 text-center hover:-translate-y-2 lg:hover:-translate-y-3 hover:shadow-2xl hover:shadow-[#f04e23]/10 hover:border-white/10 transition-all duration-500 group relative overflow-hidden">
               <div className="w-16 h-16 md:w-20 md:h-20 mx-auto bg-[#222] group-hover:bg-[#f04e23]/10 rounded-2xl flex items-center justify-center mb-6 md:mb-8 transition-colors duration-500 transform group-hover:rotate-6">
                 <Package className="w-8 h-8 md:w-10 md:h-10 text-white group-hover:text-[#f04e23] transition-colors duration-500" />
               </div>
@@ -210,10 +249,10 @@ export default function HomePage() {
               <Link to="/diensten" className="inline-flex items-center text-xs md:text-sm font-bold text-gray-400 uppercase tracking-widest hover:text-[#f04e23] transition-colors group/btn">
                 Meer Info <ArrowRight className="w-4 h-4 ml-2 opacity-0 -translate-x-2 group-hover/btn:opacity-100 group-hover/btn:translate-x-0 transition-all" />
               </Link>
-            </div>
+            </motion.div>
 
             {/* Card 2 */}
-            <div className="bg-gradient-to-b from-[#f04e23] to-[#c23610] rounded-3xl p-8 lg:p-10 text-center transform scale-100 lg:scale-105 shadow-2xl shadow-[#f04e23]/30 relative z-10 overflow-hidden md:col-span-2 lg:col-span-1">
+            <motion.div variants={staggerChild} className="bg-gradient-to-b from-[#f04e23] to-[#c23610] rounded-3xl p-8 lg:p-10 text-center transform scale-100 lg:scale-105 shadow-2xl shadow-[#f04e23]/30 relative z-10 overflow-hidden md:col-span-2 lg:col-span-1">
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
               <div className="w-16 h-16 md:w-20 md:h-20 mx-auto bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6 md:mb-8 border border-white/20">
                 <ShieldCheck className="w-8 h-8 md:w-10 md:h-10 text-white" />
@@ -225,10 +264,10 @@ export default function HomePage() {
               <Link to="/contact" className="inline-flex items-center text-xs md:text-sm font-bold text-white uppercase tracking-widest hover:text-orange-200 transition-colors bg-white/10 px-6 py-3 rounded-full border border-white/20 hover:bg-white/20">
                 Neem Contact Op
               </Link>
-            </div>
+            </motion.div>
 
             {/* Card 3 */}
-            <div className="bg-[#151515] border border-white/5 rounded-3xl p-8 lg:p-10 text-center hover:-translate-y-2 lg:hover:-translate-y-3 hover:shadow-2xl hover:shadow-[#f04e23]/10 hover:border-white/10 transition-all duration-500 group relative overflow-hidden md:col-span-1 lg:col-span-1">
+            <motion.div variants={staggerChild} className="bg-[#151515] border border-white/5 rounded-3xl p-8 lg:p-10 text-center hover:-translate-y-2 lg:hover:-translate-y-3 hover:shadow-2xl hover:shadow-[#f04e23]/10 hover:border-white/10 transition-all duration-500 group relative overflow-hidden md:col-span-1 lg:col-span-1">
               <div className="w-16 h-16 md:w-20 md:h-20 mx-auto bg-[#222] group-hover:bg-[#f04e23]/10 rounded-2xl flex items-center justify-center mb-6 md:mb-8 transition-colors duration-500 transform group-hover:rotate-6">
                 <Briefcase className="w-8 h-8 md:w-10 md:h-10 text-white group-hover:text-[#f04e23] transition-colors duration-500" />
               </div>
@@ -239,8 +278,8 @@ export default function HomePage() {
               <Link to="/diensten" className="inline-flex items-center text-xs md:text-sm font-bold text-gray-400 uppercase tracking-widest hover:text-[#f04e23] transition-colors group/btn">
                 Meer Info <ArrowRight className="w-4 h-4 ml-2 opacity-0 -translate-x-2 group-hover/btn:opacity-100 group-hover/btn:translate-x-0 transition-all" />
               </Link>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
@@ -248,18 +287,24 @@ export default function HomePage() {
       <section className="py-16 lg:py-0 bg-white flex flex-col lg:flex-row border-t border-gray-100">
         
         <div className="container mx-auto px-4 md:px-8 lg:w-1/2 lg:py-32 flex justify-start lg:justify-end">
-          <div className="w-full max-w-lg lg:pr-16 text-left">
-            <div className="flex items-center justify-start space-x-4 mb-6">
+          <motion.div
+            className="w-full max-w-lg lg:pr-16 text-left"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+          >
+            <motion.div variants={staggerChild} className="flex items-center justify-start space-x-4 mb-6">
               <div className="w-8 md:w-12 h-[3px] bg-gray-300 rounded-full"></div>
               <span className="text-gray-500 tracking-[0.2em] text-xs md:text-sm font-bold uppercase">Werkwijze & Veiligheid</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#111] uppercase leading-[1.1] mb-10 md:mb-12">
+            </motion.div>
+            <motion.h2 variants={staggerChild} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#111] uppercase leading-[1.1] mb-10 md:mb-12">
               Strikte Protocollen &<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f04e23] to-[#F38A31]">Zekerheid</span>
-            </h2>
+            </motion.h2>
 
             <div className="space-y-6 md:space-y-8">
-              <div className="flex items-start">
+              <motion.div variants={staggerChild} className="flex items-start">
                  <div className="bg-[#f04e23]/10 p-3 rounded-xl text-[#f04e23] mr-4 mt-1">
                     <UserCheck className="w-6 h-6" />
                  </div>
@@ -267,9 +312,9 @@ export default function HomePage() {
                     <h4 className="font-bold text-lg uppercase tracking-wider text-gray-800 mb-1">Voorafgaande Screening</h4>
                     <p className="text-gray-500 text-sm font-light leading-relaxed">Koeriers ondergaan een antecedentenonderzoek en worden specifiek getraind in omgang met gevoelige zendingen.</p>
                  </div>
-              </div>
+              </motion.div>
               
-              <div className="flex items-start">
+              <motion.div variants={staggerChild} className="flex items-start">
                  <div className="bg-[#f04e23]/10 p-3 rounded-xl text-[#f04e23] mr-4 mt-1">
                     <Lock className="w-6 h-6" />
                  </div>
@@ -277,9 +322,9 @@ export default function HomePage() {
                     <h4 className="font-bold text-lg uppercase tracking-wider text-gray-800 mb-1">Geheimhouding (NDA)</h4>
                     <p className="text-gray-500 text-sm font-light leading-relaxed">Voor vertrouwelijke en waardevolle opdrachten wordt altijd standaard een geheimhoudingsverklaring getekend.</p>
                  </div>
-              </div>
+              </motion.div>
 
-              <div className="flex items-start">
+              <motion.div variants={staggerChild} className="flex items-start">
                  <div className="bg-[#f04e23]/10 p-3 rounded-xl text-[#f04e23] mr-4 mt-1">
                     <MapPin className="w-6 h-6" />
                  </div>
@@ -287,9 +332,9 @@ export default function HomePage() {
                     <h4 className="font-bold text-lg uppercase tracking-wider text-gray-800 mb-1">Optionele Tracking</h4>
                     <p className="text-gray-500 text-sm font-light leading-relaxed">Ontvang een real-time trackinglink. Voor ultieme discretie is tracking volledig uitschakelbaar op verzoek.</p>
                  </div>
-              </div>
+              </motion.div>
 
-              <div className="flex items-start">
+              <motion.div variants={staggerChild} className="flex items-start">
                  <div className="bg-[#f04e23]/10 p-3 rounded-xl text-[#f04e23] mr-4 mt-1">
                     <ShieldAlert className="w-6 h-6" />
                  </div>
@@ -297,12 +342,18 @@ export default function HomePage() {
                     <h4 className="font-bold text-lg uppercase tracking-wider text-gray-800 mb-1">Uitgebreid Verzekerd</h4>
                     <p className="text-gray-500 text-sm font-light leading-relaxed">Zendingen en ritten zijn gedekt tot €2,5 miljoen. Voor extra kostbare goederen is meeverzekering mogelijk.</p>
                  </div>
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
-        <div className="w-full lg:w-1/2 mt-12 lg:mt-0 relative min-h-[300px] sm:min-h-[400px] lg:min-h-[500px] rounded-[2rem] lg:rounded-l-[80px] lg:rounded-r-none overflow-hidden shadow-2xl mx-4 lg:mx-0 lg:ml-8">
+        <motion.div
+          className="w-full lg:w-1/2 mt-12 lg:mt-0 relative min-h-[300px] sm:min-h-[400px] lg:min-h-[500px] rounded-[2rem] lg:rounded-l-[80px] lg:rounded-r-none overflow-hidden shadow-2xl mx-4 lg:mx-0 lg:ml-8"
+          variants={scaleIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+        >
           <div className="absolute inset-0 bg-black/10 z-10"></div>
           <img 
             src="/images/stock photos/hd_stock_photo_02.png" 
@@ -310,7 +361,7 @@ export default function HomePage() {
             loading="lazy"
             className="absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition-transform duration-1000"
           />
-        </div>
+        </motion.div>
       </section>
 
       {/* Why Choose Us Section */}
@@ -405,7 +456,13 @@ export default function HomePage() {
 
         <div className="container mx-auto px-4 md:px-8">
           
-          <div className="text-center mb-16 md:mb-20 relative z-10">
+          <motion.div
+            className="text-center mb-16 md:mb-20 relative z-10"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+          >
             <div className="flex items-center justify-center space-x-4 mb-4 md:mb-6">
               <div className="w-8 md:w-12 h-[3px] bg-gray-300 rounded-full"></div>
               <span className="text-gray-500 tracking-[0.2em] text-xs md:text-sm font-bold uppercase">Testimonials</span>
@@ -414,20 +471,32 @@ export default function HomePage() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#111] uppercase">
               Onze <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f04e23] to-[#F38A31]">Tevreden</span> Klanten
             </h2>
-          </div>
+          </motion.div>
 
           <div className="flex flex-col lg:flex-row items-center relative z-10 max-w-6xl mx-auto px-4 sm:px-8 lg:px-0">
             
-            <div className="w-full lg:w-1/3 -mb-16 lg:mb-0 lg:-mr-12 relative z-20 flex justify-center">
+            <motion.div
+              className="w-full lg:w-1/3 -mb-16 lg:mb-0 lg:-mr-12 relative z-20 flex justify-center"
+              variants={scaleIn}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+            >
                <img 
                 src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop" 
                 alt="Tevreden klant van Hellings Delivery" 
                 loading="lazy"
                 className="w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 object-cover rounded-full border-[6px] md:border-[10px] lg:border-[12px] border-white shadow-xl"
               />
-            </div>
+            </motion.div>
 
-            <div className="w-full lg:w-2/3 bg-white px-6 py-10 pt-24 sm:pt-32 md:p-12 lg:p-20 rounded-[2rem] md:rounded-[40px] shadow-2xl shadow-gray-200/60 relative border border-gray-100">
+            <motion.div
+              className="w-full lg:w-2/3 bg-white px-6 py-10 pt-24 sm:pt-32 md:p-12 lg:p-20 rounded-[2rem] md:rounded-[40px] shadow-2xl shadow-gray-200/60 relative border border-gray-100"
+              variants={fadeRight}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+            >
 
               <div className="text-center max-w-2xl mx-auto px-4 sm:px-8">
                 <div className="flex justify-center text-[#f04e23] space-x-1 md:space-x-2 mb-6">
@@ -445,7 +514,7 @@ export default function HomePage() {
                   <span className="text-[#f04e23] text-xs md:text-sm uppercase tracking-[0.2em] mt-1 md:mt-2 font-bold">Amsterdam</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
           </div>
         </div>
@@ -462,7 +531,13 @@ export default function HomePage() {
 
         <div className="container mx-auto relative z-20 flex flex-col lg:flex-row items-center">
           
-          <div className="w-full lg:w-2/3 py-20 lg:py-32 px-4 md:px-8 text-center lg:text-left">
+          <motion.div
+            className="w-full lg:w-2/3 py-20 lg:py-32 px-4 md:px-8 text-center lg:text-left"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+          >
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white uppercase leading-[1.2] lg:leading-[1.1] mb-8 lg:mb-10 drop-shadow-2xl">
               Klaar voor veilig &amp; <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f04e23] to-[#F38A31]">Discreet</span> vervoer?
             </h2>
@@ -473,7 +548,7 @@ export default function HomePage() {
                 <ChevronRight className="w-4 h-4 md:w-5 md:h-5 text-white" />
               </span>
             </Link>
-          </div>
+          </motion.div>
 
           <div className="hidden lg:flex lg:w-1/3 justify-end relative h-[600px]">
           </div>
