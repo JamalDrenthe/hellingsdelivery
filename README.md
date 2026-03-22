@@ -14,15 +14,21 @@ Het project maakt gebruik van de volgende moderne webtechnologieën:
 - **Styling**: [Tailwind CSS 3](https://tailwindcss.com/)
 - **Icoontjes**: [Lucide React](https://lucide.dev/)
 - **Routing**: [React Router DOM v6](https://reactrouter.com/)
+- **Database/Backend**: [Supabase](https://supabase.com/) (PostgreSQL & API)
 
 ## ✨ Belangrijkste Kenmerken
 
 - **Responsief Design**: Volledig geoptimaliseerd voor mobiel, tablet en desktop.
 - **Beveiligd Wagenpark**: Het wagenpark (FleetPage) is beveiligd met een toegangscode.
+- **Interactief Contactformulier**: Gekoppeld aan Supabase database (`contact_submissions` tabel) voor real-time opslag van klantaanvragen.
+- **Geavanceerde SEO**: 
+  - Dynamische per-pagina metadata via een custom `<SeoHead />` component.
+  - Volledige JSON-LD (schema.org) structured data integratie (`LocalBusiness`, `FAQPage`, `BreadcrumbList`, etc.).
+  - Open Graph tags en Twitter Cards geoptimaliseerd voor social media sharing.
+  - Dynamische `sitemap.xml` en `robots.txt`.
 - **Interactieve FAQ**: Een uitgebreide FAQ sectie met zoekfunctionaliteit en categorie filtering.
-- **SEO Geoptimaliseerd**: Compleet met Open Graph tags, Twitter cards, en relevante meta descriptions.
-- **Toegankelijk (A11y)**: Focus op ARIA-labels en keyboard navigatie waar nodig.
 - **Typewriter Effect**: Dynamische tekst effecten op de homepage voor een moderne look & feel.
+- **Performance Geoptimaliseerd**: Lazy loading voor afbeeldingen en efficiënte React component rendering.
 
 ## 📂 Project Structuur
 
@@ -30,16 +36,19 @@ De belangrijke mappen en bestanden in dit project:
 
 ```text
 app/
-├── public/                 # Statische assets (logo's, stock foto's, favicon)
+├── public/                 # Statische assets (logo's, stock foto's, robots.txt, sitemap.xml)
 │   └── images/
 ├── src/                    # Broncode
 │   ├── components/         # Herbruikbare React componenten
 │   │   ├── layout/         # Header, Footer
+│   │   ├── SeoHead.tsx     # Dynamische SEO meta tags injector
 │   │   └── ui/             # Knoppen, Cards, etc.
-│   ├── pages/              # Pagina componenten (Home, About, FAQ, Fleet, etc.)
+│   ├── lib/                # Externe library configuraties (Supabase client)
+│   ├── pages/              # Pagina componenten (Home, About, FAQ, Fleet, Contact)
 │   ├── App.tsx             # Hoofd applicatie component (Routing setup)
 │   └── main.tsx            # React entry point
-├── index.html              # HTML entry point (met SEO meta tags)
+├── supabase/               # Supabase database migraties en schema's
+├── index.html              # HTML entry point met globale SEO
 ├── tailwind.config.js      # Tailwind CSS configuratie
 └── vite.config.ts          # Vite configuratie
 ```
@@ -51,6 +60,7 @@ Volg deze stappen om het project lokaal te draaien:
 ### Vereisten
 - [Node.js](https://nodejs.org/) (v18 of hoger aanbevolen)
 - npm of yarn
+- Een Supabase account (voor de database)
 
 ### Setup
 
@@ -65,7 +75,15 @@ Volg deze stappen om het project lokaal te draaien:
    npm install
    ```
 
-3. **Start de ontwikkelingsserver**
+3. **Supabase Configuratie**
+   Maak een `.env` bestand in de root van de `app/` folder met je Supabase inloggegevens:
+   ```env
+   VITE_SUPABASE_URL=jouw-supabase-url
+   VITE_SUPABASE_ANON_KEY=jouw-supabase-anon-key
+   ```
+   Zorg ervoor dat in je Supabase project de tabel `contact_submissions` is aangemaakt op basis van de instructies in `/supabase/migrations`.
+
+4. **Start de ontwikkelingsserver**
    ```bash
    npm run dev
    ```
