@@ -17,6 +17,8 @@ CREATE TABLE IF NOT EXISTS profiles (
 );
 
 ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Users can view own profile" ON profiles;
+DROP POLICY IF EXISTS "Users can update own profile" ON profiles;
 CREATE POLICY "Users can view own profile" ON profiles FOR SELECT USING (auth.uid() = id);
 CREATE POLICY "Users can update own profile" ON profiles FOR UPDATE USING (auth.uid() = id);
 
@@ -37,7 +39,9 @@ CREATE TRIGGER on_auth_user_created
     FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();
 
 -- 2. PRODUCTS
-CREATE TYPE IF NOT EXISTS product_type AS ENUM ('physical', 'digital', 'bundle');
+DO $$ BEGIN
+  CREATE TYPE product_type AS ENUM ('physical', 'digital', 'bundle');
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
 
 CREATE TABLE IF NOT EXISTS products (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -53,10 +57,13 @@ CREATE TABLE IF NOT EXISTS products (
 );
 
 ALTER TABLE products ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Anyone can view active products" ON products;
 CREATE POLICY "Anyone can view active products" ON products FOR SELECT USING (is_active = true);
 
 -- 3. SUBSCRIPTION PLANS
-CREATE TYPE IF NOT EXISTS billing_interval AS ENUM ('month', 'quarter', 'year');
+DO $$ BEGIN
+  CREATE TYPE billing_interval AS ENUM ('month', 'quarter', 'year');
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
 
 CREATE TABLE IF NOT EXISTS subscription_plans (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -70,10 +77,13 @@ CREATE TABLE IF NOT EXISTS subscription_plans (
 );
 
 ALTER TABLE subscription_plans ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Anyone can view active plans" ON subscription_plans;
 CREATE POLICY "Anyone can view active plans" ON subscription_plans FOR SELECT USING (is_active = true);
 
 -- 4. CUSTOMER SUBSCRIPTIONS
-CREATE TYPE IF NOT EXISTS subscription_status AS ENUM ('active', 'paused', 'canceled', 'past_due');
+DO $$ BEGIN
+  CREATE TYPE subscription_status AS ENUM ('active', 'paused', 'canceled', 'past_due');
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
 
 CREATE TABLE IF NOT EXISTS customer_subscriptions (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -89,11 +99,14 @@ CREATE TABLE IF NOT EXISTS customer_subscriptions (
 );
 
 ALTER TABLE customer_subscriptions ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Users can view own subscriptions" ON customer_subscriptions;
 CREATE POLICY "Users can view own subscriptions" ON customer_subscriptions
     FOR SELECT USING (auth.uid() = customer_id);
 
 -- 5. ORDERS
-CREATE TYPE IF NOT EXISTS order_status AS ENUM ('pending', 'paid', 'failed', 'refunded');
+DO $$ BEGIN
+  CREATE TYPE order_status AS ENUM ('pending', 'paid', 'failed', 'refunded');
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
 
 CREATE TABLE IF NOT EXISTS orders (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -109,6 +122,8 @@ CREATE TABLE IF NOT EXISTS orders (
 );
 
 ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Users can view own orders" ON orders;
+DROP POLICY IF EXISTS "Users can insert own orders" ON orders;
 CREATE POLICY "Users can view own orders" ON orders
     FOR SELECT USING (auth.uid() = customer_id);
 CREATE POLICY "Users can insert own orders" ON orders
@@ -130,6 +145,7 @@ CREATE TABLE IF NOT EXISTS order_items (
 );
 
 ALTER TABLE order_items ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Users can view own order items" ON order_items;
 CREATE POLICY "Users can view own order items" ON order_items
     FOR SELECT USING (
         EXISTS (
