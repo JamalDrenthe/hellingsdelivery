@@ -301,8 +301,7 @@ export default function HomePage() {
               <span className="text-gray-500 tracking-[0.2em] text-xs md:text-sm font-bold uppercase">Werkwijze & Veiligheid</span>
             </motion.div>
             <motion.h2 variants={staggerChild} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#111] uppercase leading-[1.1] mb-10 md:mb-12">
-              Strikte Protocollen &<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f04e23] to-[#F38A31]">Zekerheid</span>
+              Strikte Protocollen
             </motion.h2>
 
             <div className="space-y-6 md:space-y-8">
