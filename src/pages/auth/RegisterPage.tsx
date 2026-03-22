@@ -71,7 +71,7 @@ export default function RegisterPage() {
         className="w-full max-w-md"
       >
         <Link to="/" className="flex items-center justify-center mb-10">
-          <img src="/images/hellingsdeliverylogo.png" alt="Hellings Delivery" className="h-16 w-auto object-contain" />
+          <img src="/images/hellingsdeliverylogoletters.png" alt="Hellings Delivery" className="h-16 w-auto object-contain" />
         </Link>
 
         <div className="bg-[#151515] border border-white/5 rounded-3xl p-8">
