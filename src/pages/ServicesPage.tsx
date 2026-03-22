@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { fadeUp, fadeLeft, fadeRight, scaleIn, staggerContainer, staggerChild, viewportOnce } from '../lib/animations';
+import { fadeUp, fadeLeft, fadeRight, staggerContainer, staggerChild, viewportOnce } from '../lib/animations';
 import { 
   Package, ShieldCheck, Briefcase,
-  ChevronRight, CheckCircle, Clock, Shield, UserCheck
+  ChevronRight, CheckCircle, Clock, Shield, UserCheck,
+  MapPin, Gem
 } from 'lucide-react';
 import SeoHead from '../components/SeoHead';
 
