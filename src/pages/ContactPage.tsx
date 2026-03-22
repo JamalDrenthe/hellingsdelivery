@@ -212,6 +212,8 @@ export default function ContactPage() {
                       <select 
                         value={formData.onderwerp}
                         onChange={(e) => setFormData({...formData, onderwerp: e.target.value})}
+                        title="Onderwerp selecteren"
+                        aria-label="Onderwerp"
                         className="w-full bg-gray-50 border border-gray-200 rounded-xl py-3 md:py-4 px-4 md:px-6 focus:outline-none focus:bg-white focus:border-[#f04e23] focus:ring-4 focus:ring-[#f04e23]/10 transition-all duration-300 text-sm text-gray-800"
                       >
                         <option value="">Selecteer een onderwerp</option>
