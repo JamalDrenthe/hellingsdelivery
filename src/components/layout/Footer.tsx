@@ -17,7 +17,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-gray-400 text-xs md:text-sm leading-relaxed mb-6 font-light">
-              Professioneel, discreet en veilig koeriers- en personenvervoer. Uw vertrouwde logistieke partner voor exclusieve en zorgbehoevende ritten.
+              Professioneel, discreet en veilig goederentransport. Uw vertrouwde logistieke partner voor exclusieve en vertrouwelijke zendingen.
             </p>
           </div>
 
@@ -26,7 +26,6 @@ export default function Footer() {
             <ul className="space-y-3 md:space-y-4">
               <li><Link to="/over-ons" className="text-gray-400 hover:text-[#f04e23] hover:pl-2 uppercase text-[10px] md:text-xs font-bold tracking-[0.15em] transition-all duration-300 flex items-center"><ChevronRight className="w-3 h-3 mr-2 text-[#f04e23]"/> Over Ons</Link></li>
               <li><Link to="/diensten" className="text-gray-400 hover:text-[#f04e23] hover:pl-2 uppercase text-[10px] md:text-xs font-bold tracking-[0.15em] transition-all duration-300 flex items-center"><ChevronRight className="w-3 h-3 mr-2 text-[#f04e23]"/> Diensten</Link></li>
-              <li><Link to="/wagenpark" className="text-gray-400 hover:text-[#f04e23] hover:pl-2 uppercase text-[10px] md:text-xs font-bold tracking-[0.15em] transition-all duration-300 flex items-center"><ChevronRight className="w-3 h-3 mr-2 text-[#f04e23]"/> Wagenpark</Link></li>
               <li><Link to="/contact" className="text-gray-400 hover:text-[#f04e23] hover:pl-2 uppercase text-[10px] md:text-xs font-bold tracking-[0.15em] transition-all duration-300 flex items-center"><ChevronRight className="w-3 h-3 mr-2 text-[#f04e23]"/> Contact</Link></li>
             </ul>
           </div>
@@ -34,9 +33,8 @@ export default function Footer() {
           <div>
             <h4 className="text-base md:text-lg font-bold uppercase tracking-widest mb-6 md:mb-8 text-white">Diensten</h4>
             <ul className="space-y-3 md:space-y-4">
-              <li><Link to="/diensten" className="text-gray-400 hover:text-[#f04e23] hover:pl-2 uppercase text-[10px] md:text-xs font-bold tracking-[0.15em] transition-all duration-300 flex items-center"><ChevronRight className="w-3 h-3 mr-2 text-[#f04e23]"/> Luxe & VIP Vervoer</Link></li>
+              <li><Link to="/diensten" className="text-gray-400 hover:text-[#f04e23] hover:pl-2 uppercase text-[10px] md:text-xs font-bold tracking-[0.15em] transition-all duration-300 flex items-center"><ChevronRight className="w-3 h-3 mr-2 text-[#f04e23]"/> Luxe Goederentransport</Link></li>
               <li><Link to="/diensten" className="text-gray-400 hover:text-[#f04e23] hover:pl-2 uppercase text-[10px] md:text-xs font-bold tracking-[0.15em] transition-all duration-300 flex items-center"><ChevronRight className="w-3 h-3 mr-2 text-[#f04e23]"/> Vertrouwelijk Vervoer</Link></li>
-              <li><Link to="/diensten" className="text-gray-400 hover:text-[#f04e23] hover:pl-2 uppercase text-[10px] md:text-xs font-bold tracking-[0.15em] transition-all duration-300 flex items-center"><ChevronRight className="w-3 h-3 mr-2 text-[#f04e23]"/> Zorg- & Begeleid Vervoer</Link></li>
               <li><Link to="/diensten" className="text-gray-400 hover:text-[#f04e23] hover:pl-2 uppercase text-[10px] md:text-xs font-bold tracking-[0.15em] transition-all duration-300 flex items-center"><ChevronRight className="w-3 h-3 mr-2 text-[#f04e23]"/> Maatwerk voor Bedrijven</Link></li>
             </ul>
           </div>
@@ -49,22 +47,22 @@ export default function Footer() {
                   placeholder="Uw e-mailadres..." 
                   className="w-full bg-transparent border-none text-white text-xs md:text-sm font-medium px-4 md:px-6 focus:outline-none placeholder-gray-500"
                />
-               <button className="bg-gradient-to-r from-[#f04e23] to-[#F38A31] text-white p-2 md:p-3 rounded-full hover:scale-105 transition-transform duration-300 shadow-lg">
+               <button title="Nieuwsbrief aanmelden" aria-label="Aanmelden" className="bg-gradient-to-r from-[#f04e23] to-[#F38A31] text-white p-2 md:p-3 rounded-full hover:scale-105 transition-transform duration-300 shadow-lg">
                  <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
                </button>
              </div>
              
              <div className="flex space-x-3 md:space-x-4">
-              <a href="#" className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-[#f04e23] hover:text-white hover:border-transparent hover:-translate-y-1 transition-all duration-300">
+              <a href="#" title="Twitter" aria-label="Volg ons op Twitter" className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-[#f04e23] hover:text-white hover:border-transparent hover:-translate-y-1 transition-all duration-300">
                 <Twitter className="w-4 h-4 md:w-5 md:h-5" />
               </a>
-              <a href="#" className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-[#f04e23] hover:text-white hover:border-transparent hover:-translate-y-1 transition-all duration-300">
+              <a href="#" title="Facebook" aria-label="Volg ons op Facebook" className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-[#f04e23] hover:text-white hover:border-transparent hover:-translate-y-1 transition-all duration-300">
                 <Facebook className="w-4 h-4 md:w-5 md:h-5" />
               </a>
-              <a href="#" className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-[#f04e23] hover:text-white hover:border-transparent hover:-translate-y-1 transition-all duration-300">
+              <a href="#" title="Instagram" aria-label="Volg ons op Instagram" className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-[#f04e23] hover:text-white hover:border-transparent hover:-translate-y-1 transition-all duration-300">
                 <Instagram className="w-4 h-4 md:w-5 md:h-5" />
               </a>
-              <a href="#" className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-[#f04e23] hover:text-white hover:border-transparent hover:-translate-y-1 transition-all duration-300">
+              <a href="#" title="LinkedIn" aria-label="Volg ons op LinkedIn" className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-[#f04e23] hover:text-white hover:border-transparent hover:-translate-y-1 transition-all duration-300">
                 <Linkedin className="w-4 h-4 md:w-5 md:h-5" />
               </a>
             </div>

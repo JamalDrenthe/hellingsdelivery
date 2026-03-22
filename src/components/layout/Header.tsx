@@ -24,7 +24,6 @@ export default function Header() {
     { path: '/', label: 'Home' },
     { path: '/over-ons', label: 'Over Ons' },
     { path: '/diensten', label: 'Diensten' },
-    { path: '/wagenpark', label: 'Wagenpark' },
     { path: '/faq', label: 'FAQ' },
   ];
 

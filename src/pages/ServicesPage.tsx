@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { 
-  Gem, ShieldCheck, HeartHandshake, Briefcase,
-  ChevronRight, CheckCircle, Clock, Shield, UserCheck, MapPin
+  Package, ShieldCheck, Briefcase,
+  ChevronRight, CheckCircle, Clock, Shield, UserCheck
 } from 'lucide-react';
 import SeoHead from '../components/SeoHead';
 
@@ -17,65 +17,49 @@ const breadcrumbJsonLd = {
 export default function ServicesPage() {
   const services = [
     {
-      icon: Gem,
-      title: 'Luxe & VIP Vervoer',
-      shortDesc: 'Exclusief vervoer voor kostbare goederen en VIP-personen',
-      fullDesc: 'Onze Luxe & VIP Vervoer service is ontworpen voor klanten die alleen het beste accepteren. Of het nu gaat om het vervoer van kostbare kunst, antiek, designmeubels, sieraden of horloges – wij zorgen voor een zorgeloze ervaring.',
+      icon: Package,
+      title: 'Luxe Goederentransport',
+      shortDesc: 'Discreet transport van waardevolle en exclusieve goederen',
+      fullDesc: 'Voor de bezorging van kostbare kunst, antiek, designmeubels, sieraden, horloges of andere exclusieve objecten bieden wij een white-glove service. Wij behandelen elke zending alsof het ons eigendom is.',
       features: [
-        'White-glove service met getrainde professionals',
-        'Stijlvolle sedans en SUV\'s (Mercedes E-klasse, BMW 5-serie)',
+        'White-glove behandeling door getrainde professionals',
         'Climate-controlled transport voor gevoelige items',
         'Volledig verzekerd tot €2,5 miljoen',
         'Discreet en anoniem op verzoek',
-        'VIP-chauffeur met etiquette-training'
+        'Directe bezorging zonder tussenstops',
+        'Veilige verpakking en handling'
       ],
-      image: 'https://images.unsplash.com/photo-1563720360172-67b8f3dce741?q=80&w=2070&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=2070&auto=format&fit=crop',
       color: 'from-[#f04e23] to-[#F38A31]'
     },
     {
       icon: ShieldCheck,
       title: 'Vertrouwelijk Vervoer',
       shortDesc: 'Veilige bezorging van gevoelige documenten en objecten',
-      fullDesc: 'Voor juridische documenten, medische dossiers en bedrijfsgevoelige informatie bieden wij een vertrouwelijke koeriersdienst. Anonieme ritten, verzegelde verzendingen en strikte NDA-verplichtingen garanderen uw privacy.',
+      fullDesc: 'Voor juridische documenten, medische dossiers en bedrijfsgevoelige informatie bieden wij een vertrouwelijke koeriersdienst. Anonieme bezorging, verzegelde verzendingen en strikte NDA-verplichtingen garanderen uw privacy.',
       features: [
         'NDA (geheimhoudingsverklaring) standaard',
-        'Anonieme ritten zonder externe herkenning',
+        'Anonieme bezorging zonder externe herkenning',
         'Verzegelde verzendingen op verzoek',
         'Directe levering zonder tussenstops',
-        'Gecertificeerde chauffeurs met screening',
+        'Gecertificeerde koeriers met screening',
         'Tracking optioneel en uitschakelbaar'
       ],
       image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop',
       color: 'from-[#112A46] to-[#1a3a5c]'
     },
     {
-      icon: HeartHandshake,
-      title: 'Zorg- & Begeleid Vervoer',
-      shortDesc: 'Comfortabel vervoer voor zorgbehoevende personen',
-      fullDesc: 'Onze zorgvervoerservice richt zich op het comfortabel en veilig vervoeren van zorgbehoevende personen. Met getrainde chauffeurs en speciaal uitgeruste voertuigen zorgen wij voor een stressvrije reis naar afspraken of familiebezoek.',
-      features: [
-        'Rolstoeltoegankelijke voertuigen',
-        'Getrainde chauffeurs in zorgcommunicatie',
-        'Begeleiding naar afspraken en dagbesteding',
-        'Comfortabele rit met extra tijd',
-        'Klimaatcontrole voor optimaal comfort',
-        'Facturatie mogelijk voor verzekeraars'
-      ],
-      image: 'https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=2072&auto=format&fit=crop',
-      color: 'from-[#f04e23] to-[#F38A31]'
-    },
-    {
       icon: Briefcase,
       title: 'Maatwerk voor Bedrijven',
       shortDesc: 'Logistieke oplossingen voor zakelijke klanten',
-      fullDesc: 'Voor bedrijven bieden wij flexibele logistieke oplossingen. Van spoedbezorgingen tot vaste contracten, van evenementenvervoer tot dagelijkse koeriersdiensten – wij passen ons aan uw bedrijfsbehoeften aan.',
+      fullDesc: 'Voor bedrijven bieden wij flexibele logistieke oplossingen. Van spoedbezorgingen tot vaste contracten en dagelijkse koeriersdiensten – wij passen ons aan uw bedrijfsbehoeften aan.',
       features: [
         'Vaste contracten met voorkeursbehandeling',
         'Spoeddiensten 24/7 beschikbaar',
-        'Evenementenvervoer en logistiek',
         'Dagelijkse koeriersdiensten',
         'Maandelijkse rapportage en facturering',
-        'Dedicated accountmanager'
+        'Dedicated accountmanager',
+        'Strikte vertrouwelijkheid gegarandeerd'
       ],
       image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop',
       color: 'from-[#112A46] to-[#1a3a5c]'
@@ -86,7 +70,7 @@ export default function ServicesPage() {
     {
       step: '01',
       title: 'Aanvraag',
-      description: 'Neem contact met ons op via telefoon, email of het contactformulier. Beschrijf uw wensen en eisen.'
+      description: 'Neem contact met ons op via het contactformulier. Beschrijf uw wensen en eisen.'
     },
     {
       step: '02',
@@ -108,8 +92,8 @@ export default function ServicesPage() {
   return (
     <div>
       <SeoHead
-        title="Onze Diensten – VIP, Zorg & Koeriersdiensten | Hellings Delivery"
-        description="Ontdek alle vervoersdiensten van Hellings Delivery: VIP vervoer, vertrouwelijk transport, zorgvervoer en maatwerk voor bedrijven. 24/7 beschikbaar."
+        title="Onze Diensten – Discreet & Vertrouwelijk Transport | Hellings Delivery"
+        description="Hellings Delivery biedt discreet goederentransport, vertrouwelijke koeriersdiensten en maatwerk voor bedrijven. 100% discretie, 24/7 beschikbaar."
         canonical="https://hellingsdelivery.nl/diensten"
         jsonLd={breadcrumbJsonLd}
       />

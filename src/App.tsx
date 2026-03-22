@@ -3,7 +3,6 @@ import Layout from './components/layout/Layout';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage';
-import FleetPage from './pages/FleetPage';
 import FaqPage from './pages/FaqPage';
 import ContactPage from './pages/ContactPage';
 
@@ -15,7 +14,6 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="over-ons" element={<AboutPage />} />
           <Route path="diensten" element={<ServicesPage />} />
-          <Route path="wagenpark" element={<FleetPage />} />
           <Route path="faq" element={<FaqPage />} />
           <Route path="contact" element={<ContactPage />} />
         </Route>

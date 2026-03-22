@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  ChevronRight, Gem, ShieldCheck, HeartHandshake, 
+  ChevronRight, Package, ShieldCheck, Briefcase,
   UserCheck, ShieldAlert, Lock, CheckCircle, 
-  Star, ArrowRight, Clock, MapPin
+  Star, ArrowRight, Clock
 } from 'lucide-react';
 import SeoHead from '../components/SeoHead';
 
@@ -193,7 +193,7 @@ export default function HomePage() {
               <div className="w-8 md:w-12 h-[3px] bg-[#f04e23] rounded-full text-transparent"></div>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white uppercase">
-              Ervaren Chauffeurs & <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f04e23] to-[#F38A31]">Doordachte Logistiek</span>
+              Discreet Transport &amp; <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f04e23] to-[#F38A31]">Doordachte Logistiek</span>
             </h2>
           </div>
 
@@ -201,11 +201,11 @@ export default function HomePage() {
             {/* Card 1 */}
             <div className="bg-[#151515] border border-white/5 rounded-3xl p-8 lg:p-10 text-center hover:-translate-y-2 lg:hover:-translate-y-3 hover:shadow-2xl hover:shadow-[#f04e23]/10 hover:border-white/10 transition-all duration-500 group relative overflow-hidden">
               <div className="w-16 h-16 md:w-20 md:h-20 mx-auto bg-[#222] group-hover:bg-[#f04e23]/10 rounded-2xl flex items-center justify-center mb-6 md:mb-8 transition-colors duration-500 transform group-hover:rotate-6">
-                <Gem className="w-8 h-8 md:w-10 md:h-10 text-white group-hover:text-[#f04e23] transition-colors duration-500" />
+                <Package className="w-8 h-8 md:w-10 md:h-10 text-white group-hover:text-[#f04e23] transition-colors duration-500" />
               </div>
-              <h3 className="text-lg md:text-xl font-bold text-white uppercase mb-3 md:mb-4 tracking-wider">Luxe & VIP Vervoer</h3>
+              <h3 className="text-lg md:text-xl font-bold text-white uppercase mb-3 md:mb-4 tracking-wider">Luxe Goederentransport</h3>
               <p className="text-gray-400 mb-6 md:mb-8 text-sm leading-relaxed font-light">
-                Vervoer van kostbare kunst, antiek, sieraden. Inclusief VIP-chauffeursdiensten met stijl, comfort en white-glove service.
+                Discreet transport van kostbare kunst, antiek, sieraden en andere exclusieve objecten. White-glove behandeling met 100% discretie.
               </p>
               <Link to="/diensten" className="inline-flex items-center text-xs md:text-sm font-bold text-gray-400 uppercase tracking-widest hover:text-[#f04e23] transition-colors group/btn">
                 Meer Info <ArrowRight className="w-4 h-4 ml-2 opacity-0 -translate-x-2 group-hover/btn:opacity-100 group-hover/btn:translate-x-0 transition-all" />
@@ -230,11 +230,11 @@ export default function HomePage() {
             {/* Card 3 */}
             <div className="bg-[#151515] border border-white/5 rounded-3xl p-8 lg:p-10 text-center hover:-translate-y-2 lg:hover:-translate-y-3 hover:shadow-2xl hover:shadow-[#f04e23]/10 hover:border-white/10 transition-all duration-500 group relative overflow-hidden md:col-span-1 lg:col-span-1">
               <div className="w-16 h-16 md:w-20 md:h-20 mx-auto bg-[#222] group-hover:bg-[#f04e23]/10 rounded-2xl flex items-center justify-center mb-6 md:mb-8 transition-colors duration-500 transform group-hover:rotate-6">
-                <HeartHandshake className="w-8 h-8 md:w-10 md:h-10 text-white group-hover:text-[#f04e23] transition-colors duration-500" />
+                <Briefcase className="w-8 h-8 md:w-10 md:h-10 text-white group-hover:text-[#f04e23] transition-colors duration-500" />
               </div>
-              <h3 className="text-lg md:text-xl font-bold text-white uppercase mb-3 md:mb-4 tracking-wider">Zorg- & Begeleid Vervoer</h3>
+              <h3 className="text-lg md:text-xl font-bold text-white uppercase mb-3 md:mb-4 tracking-wider">Maatwerk voor Bedrijven</h3>
               <p className="text-gray-400 mb-6 md:mb-8 text-sm leading-relaxed font-light">
-                Vervoer van zorgbehoevende personen (incl. rolstoel) met getrainde chauffeurs naar afspraken of familiebezoek.
+                Vaste contracten, spoeddiensten 24/7 en dagelijkse koeriersdiensten voor zakelijke klanten die vertrouwelijkheid eisen.
               </p>
               <Link to="/diensten" className="inline-flex items-center text-xs md:text-sm font-bold text-gray-400 uppercase tracking-widest hover:text-[#f04e23] transition-colors group/btn">
                 Meer Info <ArrowRight className="w-4 h-4 ml-2 opacity-0 -translate-x-2 group-hover/btn:opacity-100 group-hover/btn:translate-x-0 transition-all" />
@@ -265,7 +265,7 @@ export default function HomePage() {
                  </div>
                  <div>
                     <h4 className="font-bold text-lg uppercase tracking-wider text-gray-800 mb-1">Voorafgaande Screening</h4>
-                    <p className="text-gray-500 text-sm font-light leading-relaxed">Chauffeurs ondergaan een antecedentenonderzoek en worden specifiek getraind in omgang met gevoelige zendingen.</p>
+                    <p className="text-gray-500 text-sm font-light leading-relaxed">Koeriers ondergaan een antecedentenonderzoek en worden specifiek getraind in omgang met gevoelige zendingen.</p>
                  </div>
               </div>
               
@@ -464,8 +464,7 @@ export default function HomePage() {
           
           <div className="w-full lg:w-2/3 py-20 lg:py-32 px-4 md:px-8 text-center lg:text-left">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white uppercase leading-[1.2] lg:leading-[1.1] mb-8 lg:mb-10 drop-shadow-2xl">
-              Klaar voor veilig &<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f04e23] to-[#F38A31]">Discreet</span> vervoer?
+              Klaar voor veilig &amp; <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f04e23] to-[#F38A31]">Discreet</span> vervoer?
             </h2>
             <p className="text-gray-300 text-sm md:text-lg mb-10 max-w-lg mx-auto lg:mx-0 font-light">Actief in heel Nederland en België (Randstad, Brabant, Limburg, Antwerpen, Brussel). Internationaal op aanvraag.</p>
             <Link to="/contact" className="inline-flex items-center text-white text-sm md:text-base font-bold uppercase tracking-wider group bg-white/10 hover:bg-white/20 pr-2 pl-6 md:pl-8 py-2 rounded-full backdrop-blur-md border border-white/20 transition-all duration-300">
