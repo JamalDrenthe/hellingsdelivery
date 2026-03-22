@@ -1,10 +1,36 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   ChevronRight, CheckCircle, Users, Briefcase, Wind, Droplets, 
-  Shield, Eye, Accessibility
+  Shield, Eye, Accessibility, Lock, X
 } from 'lucide-react';
 
 export default function FleetPage() {
+  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
+  const CORRECT_CODE = '2106';
+
+  useEffect(() => {
+    // Check if already unlocked in this session
+    const unlocked = sessionStorage.getItem('fleetUnlocked');
+    if (unlocked === 'true') {
+      setIsUnlocked(true);
+    }
+  }, []);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === CORRECT_CODE) {
+      setIsUnlocked(true);
+      sessionStorage.setItem('fleetUnlocked', 'true');
+      setError(false);
+    } else {
+      setError(true);
+      setPassword('');
+    }
+  };
+
   const vehicles = [
     {
       type: 'Luxe Sedan',
@@ -115,6 +141,55 @@ export default function FleetPage() {
 
   return (
     <div>
+      {/* Password Lock Screen */}
+      {!isUnlocked && (
+        <div className="fixed inset-0 bg-[#0a0a0a] z-50 flex items-center justify-center">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-[#111] to-[#0a0a0a]"></div>
+          <div className="relative z-10 w-full max-w-md px-6">
+            <div className="bg-white/5 backdrop-blur-xl rounded-[2rem] p-8 md:p-12 border border-white/10 shadow-2xl">
+              <div className="text-center mb-8">
+                <div className="w-20 h-20 mx-auto bg-gradient-to-r from-[#f04e23] to-[#F38A31] rounded-full flex items-center justify-center mb-6 shadow-lg shadow-[#f04e23]/30">
+                  <Lock className="w-10 h-10 text-white" />
+                </div>
+                <h2 className="text-2xl md:text-3xl font-black text-white uppercase mb-2">Beveiligde Pagina</h2>
+                <p className="text-gray-400 text-sm">Voer de toegangscode in om het wagenpark te bekijken</p>
+              </div>
+
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Voer code in..."
+                    maxLength={4}
+                    className={`w-full px-6 py-4 bg-white/10 border ${error ? 'border-red-500' : 'border-white/20'} rounded-xl text-white text-center text-2xl tracking-[0.5em] font-bold placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#f04e23] focus:border-transparent transition-all`}
+                    autoFocus
+                  />
+                  {error && (
+                    <p className="text-red-500 text-sm text-center mt-2">Ongeldige code. Probeer opnieuw.</p>
+                  )}
+                </div>
+                <button
+                  type="submit"
+                  className="w-full py-4 bg-gradient-to-r from-[#f04e23] to-[#F38A31] text-white font-bold uppercase tracking-wider rounded-xl hover:shadow-lg hover:shadow-[#f04e23]/30 transition-all duration-300"
+                >
+                  Ontgrendel
+                </button>
+              </form>
+
+              <Link 
+                to="/" 
+                className="flex items-center justify-center mt-6 text-gray-400 hover:text-white transition-colors text-sm"
+              >
+                <X className="w-4 h-4 mr-2" />
+                Terug naar home
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Hero Section */}
       <section className="relative bg-[#0a0a0a] min-h-[60vh] flex items-center pt-24 lg:pt-20 overflow-hidden">
         <div className="absolute inset-0">
