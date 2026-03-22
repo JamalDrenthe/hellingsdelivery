@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  ChevronDown, ChevronRight, Phone, Mail, Clock, Search
+  ChevronDown, ChevronRight, Clock, Search
 } from 'lucide-react';
 import SeoHead from '../components/SeoHead';
 
@@ -311,21 +311,11 @@ export default function FaqPage() {
                 </Link>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20">
-                  <Phone className="w-8 h-8 text-white mx-auto mb-4" />
-                  <h4 className="text-white font-bold uppercase text-sm mb-2">Telefoon</h4>
-                  <p className="text-white/80 text-sm">+31 (0)20 123 4567</p>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20">
-                  <Mail className="w-8 h-8 text-white mx-auto mb-4" />
-                  <h4 className="text-white font-bold uppercase text-sm mb-2">E-mail</h4>
-                  <p className="text-white/80 text-sm">info@hellingsdelivery.nl</p>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20">
-                  <Clock className="w-8 h-8 text-white mx-auto mb-4" />
-                  <h4 className="text-white font-bold uppercase text-sm mb-2">Beschikbaar</h4>
-                  <p className="text-white/80 text-sm">24/7</p>
+              <div className="inline-flex bg-white/10 backdrop-blur-sm rounded-2xl px-8 py-6 items-center gap-4 border border-white/20">
+                <Clock className="w-8 h-8 text-white" />
+                <div className="text-left">
+                  <h4 className="text-white font-bold uppercase text-sm mb-1">Bereikbaar</h4>
+                  <p className="text-white/80 text-sm">24/7 beschikbaar</p>
                 </div>
               </div>
             </div>

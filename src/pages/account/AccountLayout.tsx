@@ -1,11 +1,12 @@
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { User, Package, CreditCard, LogOut, ChevronRight, LayoutDashboard } from 'lucide-react';
+import { User, Package, CreditCard, LogOut, ChevronRight, LayoutDashboard, ShoppingBag } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 
 const navItems = [
   { to: '/account', label: 'Overzicht', icon: LayoutDashboard, end: true },
   { to: '/account/orders', label: 'Bestellingen', icon: Package, end: false },
   { to: '/account/subscriptions', label: 'Abonnementen', icon: CreditCard, end: false },
+  { to: '/account/shop', label: 'Add-ons & Services', icon: ShoppingBag, end: false },
   { to: '/account/profile', label: 'Mijn Profiel', icon: User, end: false },
 ];
 

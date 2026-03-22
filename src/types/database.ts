@@ -17,6 +17,8 @@ export interface Profile {
   phone: string | null;
   billing_address: BillingAddress | null;
   vat_number: string | null;
+  kvk_number: string | null;
+  bank_account: string | null;
   preferred_payment_method: string | null;
   created_at: string;
   updated_at: string;

@@ -9,12 +9,16 @@ import FaqPage from './pages/FaqPage';
 import ContactPage from './pages/ContactPage';
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
+import PrivacyPage from './pages/PrivacyPage';
+import VoorwaardenPage from './pages/VoorwaardenPage';
+import PrijzenPage from './pages/PrijzenPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import AccountLayout from './pages/account/AccountLayout';
 import AccountOverviewPage from './pages/account/AccountOverviewPage';
 import OrdersPage from './pages/account/OrdersPage';
 import SubscriptionsPage from './pages/account/SubscriptionsPage';
 import ProfilePage from './pages/account/ProfilePage';
+import AccountShopPage from './pages/account/AccountShopPage';
 
 const pageVariants: Variants = {
   initial: { opacity: 0, y: 16 },
@@ -43,11 +47,15 @@ function AnimatedRoutes() {
           </Route>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/voorwaarden" element={<VoorwaardenPage />} />
+          <Route path="/prijzen" element={<PrijzenPage />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/account" element={<AccountLayout />}>
               <Route index element={<AccountOverviewPage />} />
               <Route path="orders" element={<OrdersPage />} />
               <Route path="subscriptions" element={<SubscriptionsPage />} />
+              <Route path="shop" element={<AccountShopPage />} />
               <Route path="profile" element={<ProfilePage />} />
             </Route>
           </Route>

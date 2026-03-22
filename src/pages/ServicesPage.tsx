@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import { fadeUp, fadeLeft, fadeRight, staggerContainer, staggerChild, viewportOnce } from '../lib/animations';
 import { 
   Package, ShieldCheck, Briefcase,
-  ChevronRight, CheckCircle, Clock, Shield, UserCheck,
-  MapPin, Gem
+  ChevronRight, CheckCircle, Clock, Shield,
+  MapPin
 } from 'lucide-react';
 import SeoHead from '../components/SeoHead';
 
@@ -32,7 +32,7 @@ export default function ServicesPage() {
         'Directe bezorging zonder tussenstops',
         'Veilige verpakking en handling'
       ],
-      image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=2070&auto=format&fit=crop',
+      image: '/images/stock%20photos/hd_stock_photo_04.png',
       color: 'from-[#f04e23] to-[#F38A31]'
     },
     {
@@ -292,38 +292,12 @@ export default function ServicesPage() {
 
             <div className="bg-[#151515] border border-white/5 rounded-3xl p-8 text-center hover:-translate-y-2 hover:border-white/10 transition-all duration-300 group">
               <div className="w-16 h-16 mx-auto bg-[#222] group-hover:bg-[#f04e23]/10 rounded-2xl flex items-center justify-center mb-6 transition-colors duration-300">
-                <UserCheck className="w-8 h-8 text-white group-hover:text-[#f04e23] transition-colors duration-300" />
-              </div>
-              <h3 className="text-lg font-bold text-white uppercase mb-3 tracking-wider">Gescreende Chauffeurs</h3>
-              <p className="text-gray-400 text-sm leading-relaxed font-light">
-                Alle chauffeurs ondergaan een antecedentenonderzoek en specifieke training.
-              </p>
-            </div>
-
-            <div className="bg-[#151515] border border-white/5 rounded-3xl p-8 text-center hover:-translate-y-2 hover:border-white/10 transition-all duration-300 group">
-              <div className="w-16 h-16 mx-auto bg-[#222] group-hover:bg-[#f04e23]/10 rounded-2xl flex items-center justify-center mb-6 transition-colors duration-300">
                 <MapPin className="w-8 h-8 text-white group-hover:text-[#f04e23] transition-colors duration-300" />
               </div>
               <h3 className="text-lg font-bold text-white uppercase mb-3 tracking-wider">Nederland & België</h3>
               <p className="text-gray-400 text-sm leading-relaxed font-light">
                 Actief in de Randstad, Brabant, Limburg, Antwerpen en Brussel. Internationaal op aanvraag.
               </p>
-            </div>
-
-            <div className="bg-gradient-to-b from-[#f04e23] to-[#c23610] rounded-3xl p-8 text-center transform scale-100 shadow-2xl shadow-[#f04e23]/30 sm:col-span-2 lg:col-span-2">
-              <div className="w-16 h-16 mx-auto bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6 border border-white/20">
-                <Gem className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-lg font-bold text-white uppercase mb-3 tracking-wider">Exclusief Wagenpark</h3>
-              <p className="text-white/90 text-sm leading-relaxed font-medium max-w-md mx-auto">
-                Van luxe sedans tot premium SUV's en discreet busjes. Alle voertuigen zijn uitgerust met climate control, getinte ramen en comfortabele zitplaatsen.
-              </p>
-              <Link 
-                to="/wagenpark" 
-                className="inline-flex items-center text-white text-sm font-bold uppercase tracking-wider mt-6 bg-white/10 px-6 py-3 rounded-full border border-white/20 hover:bg-white/20 transition-colors"
-              >
-                Bekijk Wagenpark <ChevronRight className="w-4 h-4 ml-2" />
-              </Link>
             </div>
           </div>
         </div>

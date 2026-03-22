@@ -5,7 +5,7 @@ import { fadeUp, fadeLeft, fadeRight, scaleIn, staggerContainer, staggerChild, v
 import { 
   ChevronRight, Package, ShieldCheck, Briefcase,
   UserCheck, ShieldAlert, Lock, CheckCircle, 
-  Star, ArrowRight, Clock, MapPin, Gem
+  Star, ArrowRight, Clock, MapPin
 } from 'lucide-react';
 import SeoHead from '../components/SeoHead';
 
@@ -433,17 +433,6 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <div className="group hover:-translate-y-1 transition-transform w-full">
-                <div className="flex items-center gap-4 mb-3 md:mb-4">
-                  <div className="w-12 h-12 md:w-16 md:h-16 bg-white shadow-lg rounded-2xl flex items-center justify-center text-[#f04e23] group-hover:bg-[#f04e23] group-hover:text-white transition-all duration-300 flex-shrink-0">
-                    <Gem className="w-6 h-6 md:w-8 md:h-8" />
-                  </div>
-                  <h4 className="text-base md:text-xl font-bold uppercase tracking-wider text-gray-800 group-hover:text-[#f04e23] transition-colors text-left">Exclusief Wagenpark</h4>
-                </div>
-                <p className="text-gray-500 text-sm md:text-base leading-relaxed font-light pl-[64px] md:pl-[80px] text-left">
-                  Van luxe sedans (Mercedes E-klasse) tot premium SUV's met getinte ramen, airco en water aan boord.
-                </p>
-              </div>
             </div>
 
           </div>

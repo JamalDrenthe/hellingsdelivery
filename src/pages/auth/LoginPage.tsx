@@ -40,9 +40,7 @@ export default function LoginPage() {
         className="w-full max-w-md"
       >
         <Link to="/" className="flex items-center justify-center mb-10">
-          <span className="text-white font-black text-2xl tracking-tight uppercase">
-            Hellings<span className="text-[#f04e23]">.</span>
-          </span>
+          <img src="/images/hellingsdeliverylogo.png" alt="Hellings Delivery" className="h-16 w-auto object-contain" />
         </Link>
 
         <div className="bg-[#151515] border border-white/5 rounded-3xl p-8">

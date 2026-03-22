@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { User, Phone, MapPin, Building, Save, CheckCircle } from 'lucide-react';
+import { User, Phone, MapPin, Building, Save, CheckCircle, CreditCard, Hash } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../../contexts/AuthContext';
 import { supabase } from '../../lib/supabase';
@@ -10,6 +10,8 @@ export default function ProfilePage() {
   const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('');
   const [vatNumber, setVatNumber] = useState('');
+  const [kvkNumber, setKvkNumber] = useState('');
+  const [bankAccount, setBankAccount] = useState('');
   const [street, setStreet] = useState('');
   const [city, setCity] = useState('');
   const [postalCode, setPostalCode] = useState('');
@@ -20,9 +22,11 @@ export default function ProfilePage() {
 
   useEffect(() => {
     if (!profile) return;
-    setFullName(profile.full_name ?? '');
-    setPhone(profile.phone ?? '');
-    setVatNumber(profile.vat_number ?? '');
+    if (profile.full_name) setFullName(profile.full_name);
+    if (profile.phone) setPhone(profile.phone);
+    if (profile.vat_number) setVatNumber(profile.vat_number);
+    if (profile.kvk_number) setKvkNumber(profile.kvk_number);
+    if (profile.bank_account) setBankAccount(profile.bank_account);
     const addr = profile.billing_address;
     if (addr) {
       setStreet(addr.street ?? '');
@@ -43,7 +47,7 @@ export default function ProfilePage() {
 
     const { error: err } = await supabase
       .from('profiles')
-      .update({ full_name: fullName, phone, vat_number: vatNumber, billing_address, updated_at: new Date().toISOString() })
+      .update({ full_name: fullName, phone, vat_number: vatNumber, kvk_number: kvkNumber, bank_account: bankAccount, billing_address, updated_at: new Date().toISOString() })
       .eq('id', user.id);
 
     if (err) {
@@ -69,8 +73,9 @@ export default function ProfilePage() {
           </div>
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Volledige naam</label>
+              <label htmlFor="fullName" className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Volledige naam</label>
               <input
+                id="fullName"
                 type="text"
                 value={fullName}
                 onChange={e => setFullName(e.target.value)}
@@ -79,8 +84,9 @@ export default function ProfilePage() {
               />
             </div>
             <div>
-              <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">E-mailadres</label>
+              <label htmlFor="profileEmail" className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">E-mailadres</label>
               <input
+                id="profileEmail"
                 type="email"
                 value={profile?.email ?? ''}
                 disabled
@@ -88,10 +94,11 @@ export default function ProfilePage() {
               />
             </div>
             <div className="sm:col-span-2">
-              <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+              <label htmlFor="phone" className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
                 <Phone className="inline w-3 h-3 mr-1" />Telefoonnummer
               </label>
               <input
+                id="phone"
                 type="tel"
                 value={phone}
                 onChange={e => setPhone(e.target.value)}
@@ -110,42 +117,20 @@ export default function ProfilePage() {
           </div>
           <div className="grid sm:grid-cols-2 gap-4">
             <div className="sm:col-span-2">
-              <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Straat en huisnummer</label>
-              <input
-                type="text"
-                value={street}
-                onChange={e => setStreet(e.target.value)}
-                placeholder="Voorbeeldstraat 1"
-                className="w-full bg-[#1e1e1e] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-[#f04e23]/50 transition-colors"
-              />
+              <label htmlFor="street" className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Straat en huisnummer</label>
+              <input id="street" type="text" value={street} onChange={e => setStreet(e.target.value)} placeholder="Voorbeeldstraat 1" className="w-full bg-[#1e1e1e] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-[#f04e23]/50 transition-colors" />
             </div>
             <div>
-              <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Postcode</label>
-              <input
-                type="text"
-                value={postalCode}
-                onChange={e => setPostalCode(e.target.value)}
-                placeholder="1234 AB"
-                className="w-full bg-[#1e1e1e] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-[#f04e23]/50 transition-colors"
-              />
+              <label htmlFor="postalCode" className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Postcode</label>
+              <input id="postalCode" type="text" value={postalCode} onChange={e => setPostalCode(e.target.value)} placeholder="1234 AB" className="w-full bg-[#1e1e1e] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-[#f04e23]/50 transition-colors" />
             </div>
             <div>
-              <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Stad</label>
-              <input
-                type="text"
-                value={city}
-                onChange={e => setCity(e.target.value)}
-                placeholder="Amsterdam"
-                className="w-full bg-[#1e1e1e] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-[#f04e23]/50 transition-colors"
-              />
+              <label htmlFor="city" className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Stad</label>
+              <input id="city" type="text" value={city} onChange={e => setCity(e.target.value)} placeholder="Amsterdam" className="w-full bg-[#1e1e1e] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-[#f04e23]/50 transition-colors" />
             </div>
             <div>
-              <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Land</label>
-              <select
-                value={country}
-                onChange={e => setCountry(e.target.value)}
-                className="w-full bg-[#1e1e1e] border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#f04e23]/50 transition-colors"
-              >
+              <label htmlFor="country" className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Land</label>
+              <select id="country" title="Land" value={country} onChange={e => setCountry(e.target.value)} className="w-full bg-[#1e1e1e] border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#f04e23]/50 transition-colors">
                 <option value="NL">Nederland</option>
                 <option value="BE">België</option>
                 <option value="DE">Duitsland</option>
@@ -159,17 +144,31 @@ export default function ProfilePage() {
         <div className="bg-[#151515] border border-white/5 rounded-2xl p-6">
           <div className="flex items-center gap-3 mb-5">
             <Building className="w-4 h-4 text-[#f04e23]" />
-            <h2 className="text-white font-black text-sm uppercase tracking-wider">B2B Gegevens</h2>
+            <h2 className="text-white font-black text-sm uppercase tracking-wider">Zakelijke Gegevens</h2>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="vatNumber" className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">BTW-nummer (optioneel)</label>
+              <input id="vatNumber" type="text" value={vatNumber} onChange={e => setVatNumber(e.target.value)} placeholder="NL123456789B01" className="w-full bg-[#1e1e1e] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-[#f04e23]/50 transition-colors" />
+            </div>
+            <div>
+              <label htmlFor="kvkNumber" className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                <Hash className="inline w-3 h-3 mr-1" />KVK-nummer (optioneel)
+              </label>
+              <input id="kvkNumber" type="text" value={kvkNumber} onChange={e => setKvkNumber(e.target.value)} placeholder="12345678" className="w-full bg-[#1e1e1e] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-[#f04e23]/50 transition-colors" />
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-[#151515] border border-white/5 rounded-2xl p-6">
+          <div className="flex items-center gap-3 mb-5">
+            <CreditCard className="w-4 h-4 text-[#f04e23]" />
+            <h2 className="text-white font-black text-sm uppercase tracking-wider">Bankgegevens</h2>
           </div>
           <div>
-            <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">BTW-nummer (optioneel)</label>
-            <input
-              type="text"
-              value={vatNumber}
-              onChange={e => setVatNumber(e.target.value)}
-              placeholder="NL123456789B01"
-              className="w-full bg-[#1e1e1e] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-[#f04e23]/50 transition-colors"
-            />
+            <label htmlFor="bankAccount" className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">IBAN Rekeningnummer (optioneel)</label>
+            <input id="bankAccount" type="text" value={bankAccount} onChange={e => setBankAccount(e.target.value.toUpperCase())} placeholder="NL91 ABNA 0417 1643 00" className="w-full bg-[#1e1e1e] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 text-sm font-mono focus:outline-none focus:border-[#f04e23]/50 transition-colors" />
+            <p className="text-gray-600 text-xs mt-2">Gebruikt voor terugbetalingen en zakelijke facturatie.</p>
           </div>
         </div>
 
