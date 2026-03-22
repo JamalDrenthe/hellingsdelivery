@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion, Variants } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 import Layout from './components/layout/Layout';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
