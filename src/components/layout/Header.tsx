@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, User, LogOut } from 'lucide-react';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const { user, signOut } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -58,6 +60,22 @@ export default function Header() {
             >
               Contact
             </Link>
+            {user ? (
+              <div className="flex items-center gap-3 ml-4">
+                <Link to="/account" className="flex items-center gap-2 text-gray-300 hover:text-white text-sm font-bold uppercase tracking-wider transition-colors">
+                  <User className="w-4 h-4" />
+                  <span>Account</span>
+                </Link>
+                <button onClick={() => signOut()} title="Uitloggen" aria-label="Uitloggen" className="text-gray-500 hover:text-red-400 transition-colors">
+                  <LogOut className="w-4 h-4" />
+                </button>
+              </div>
+            ) : (
+              <Link to="/login" className="flex items-center gap-2 text-gray-300 hover:text-white text-sm font-bold uppercase tracking-wider ml-4 transition-colors">
+                <User className="w-4 h-4" />
+                <span>Inloggen</span>
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -90,13 +108,27 @@ export default function Header() {
             </Link>
           ))}
         </div>
-        <div className="absolute bottom-8 w-full px-6 md:px-8">
+        <div className="absolute bottom-8 w-full px-6 md:px-8 space-y-3">
           <Link 
             to="/contact" 
             className="block w-full bg-[#f04e23] text-white text-center py-5 rounded-2xl text-lg font-bold uppercase tracking-widest hover:bg-orange-600 shadow-xl shadow-[#f04e23]/30 transition-all active:scale-95"
           >
             Contact
           </Link>
+          {user ? (
+            <div className="flex gap-3">
+              <Link to="/account" className="flex-1 flex items-center justify-center gap-2 bg-white/10 text-gray-800 py-4 rounded-2xl text-sm font-bold uppercase tracking-wider">
+                <User className="w-4 h-4" />Account
+              </Link>
+              <button onClick={() => signOut()} className="flex-1 flex items-center justify-center gap-2 bg-white/10 text-gray-800 py-4 rounded-2xl text-sm font-bold uppercase tracking-wider">
+                <LogOut className="w-4 h-4" />Uitloggen
+              </button>
+            </div>
+          ) : (
+            <Link to="/login" className="flex items-center justify-center gap-2 bg-white/10 text-gray-800 py-4 rounded-2xl text-sm font-bold uppercase tracking-wider">
+              <User className="w-4 h-4" />Inloggen
+            </Link>
+          )}
         </div>
       </div>
     </>
