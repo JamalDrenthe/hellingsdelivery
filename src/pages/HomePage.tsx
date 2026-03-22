@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { 
   ChevronRight, Package, ShieldCheck, Briefcase,
   UserCheck, ShieldAlert, Lock, CheckCircle, 
-  Star, ArrowRight, Clock
+  Star, ArrowRight, Clock, MapPin
 } from 'lucide-react';
 import SeoHead from '../components/SeoHead';
 
