@@ -1,73 +1,87 @@
-# React + TypeScript + Vite
+# Hellings Delivery
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Hellings Delivery is een exclusieve koeriers- en vervoersdienst in Nederland en België. Wij bieden luxe VIP vervoer, vertrouwelijk transport, zorgvervoer en snelle koeriersdiensten met 100% discretie, 24/7 beschikbaar.
 
-Currently, two official plugins are available:
+Deze repository bevat de broncode voor de officiële website van Hellings Delivery, gebouwd met een moderne React stack.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Technologieën
 
-## React Compiler
+Het project maakt gebruik van de volgende moderne webtechnologieën:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend Framework**: [React 18](https://react.dev/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+- **Taal**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS 3](https://tailwindcss.com/)
+- **Icoontjes**: [Lucide React](https://lucide.dev/)
+- **Routing**: [React Router DOM v6](https://reactrouter.com/)
 
-## Expanding the ESLint configuration
+## ✨ Belangrijkste Kenmerken
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Responsief Design**: Volledig geoptimaliseerd voor mobiel, tablet en desktop.
+- **Beveiligd Wagenpark**: Het wagenpark (FleetPage) is beveiligd met een toegangscode.
+- **Interactieve FAQ**: Een uitgebreide FAQ sectie met zoekfunctionaliteit en categorie filtering.
+- **SEO Geoptimaliseerd**: Compleet met Open Graph tags, Twitter cards, en relevante meta descriptions.
+- **Toegankelijk (A11y)**: Focus op ARIA-labels en keyboard navigatie waar nodig.
+- **Typewriter Effect**: Dynamische tekst effecten op de homepage voor een moderne look & feel.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📂 Project Structuur
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+De belangrijke mappen en bestanden in dit project:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```text
+app/
+├── public/                 # Statische assets (logo's, stock foto's, favicon)
+│   └── images/
+├── src/                    # Broncode
+│   ├── components/         # Herbruikbare React componenten
+│   │   ├── layout/         # Header, Footer
+│   │   └── ui/             # Knoppen, Cards, etc.
+│   ├── pages/              # Pagina componenten (Home, About, FAQ, Fleet, etc.)
+│   ├── App.tsx             # Hoofd applicatie component (Routing setup)
+│   └── main.tsx            # React entry point
+├── index.html              # HTML entry point (met SEO meta tags)
+├── tailwind.config.js      # Tailwind CSS configuratie
+└── vite.config.ts          # Vite configuratie
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🛠️ Installatie & Ontwikkeling
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Volg deze stappen om het project lokaal te draaien:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Vereisten
+- [Node.js](https://nodejs.org/) (v18 of hoger aanbevolen)
+- npm of yarn
+
+### Setup
+
+1. **Clone de repository**
+   ```bash
+   git clone https://github.com/JamalDrenthe/hellingsdelivery.git
+   cd hellingsdelivery/app
+   ```
+
+2. **Installeer afhankelijkheden**
+   ```bash
+   npm install
+   ```
+
+3. **Start de ontwikkelingsserver**
+   ```bash
+   npm run dev
+   ```
+   De applicatie is nu lokaal beschikbaar via `http://localhost:5173`.
+
+### Bouwen voor Productie
+
+Om een geoptimaliseerde productie build te maken:
+```bash
+npm run build
 ```
+De gegenereerde bestanden komen in de `dist/` map terecht, klaar om gedeployed te worden.
+
+## 🔒 Toegangscodes
+- **Wagenpark (/wagenpark)**: De pagina is beveiligd. De standaard testcode is `2106`.
+
+## 📄 Licentie & Rechten
+© 2026 Hellings Delivery. Alle rechten voorbehouden.
+Code en design zijn eigendom van Hellings Delivery.
