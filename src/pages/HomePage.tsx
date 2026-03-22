@@ -541,7 +541,7 @@ export default function HomePage() {
             viewport={viewportOnce}
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white uppercase leading-[1.2] lg:leading-[1.1] mb-8 lg:mb-10 drop-shadow-2xl">
-              Klaar voor veilig &amp; <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f04e23] to-[#F38A31]">Discreet</span> vervoer?
+              Veilig &amp; <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f04e23] to-[#F38A31]">Discreet</span>
             </h2>
             <p className="text-gray-300 text-sm md:text-lg mb-10 max-w-lg mx-auto lg:mx-0 font-light">Actief in heel Nederland en België (Randstad, Brabant, Limburg, Antwerpen, Brussel). Internationaal op aanvraag.</p>
             <Link to="/contact" className="inline-flex items-center text-white text-sm md:text-base font-bold uppercase tracking-wider group bg-white/10 hover:bg-white/20 pr-2 pl-6 md:pl-8 py-2 rounded-full backdrop-blur-md border border-white/20 transition-all duration-300">
