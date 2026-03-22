@@ -10,8 +10,10 @@ import {
 import SeoHead from '../components/SeoHead';
 
 // Typewriter Effect Component
+const typewriterLines = ['Vervoer dat', 'past bij uw', 'wensen'];
+
 function TypewriterText() {
-  const lines = ['Vervoer dat', 'past bij uw', 'wensen'];
+  const lines = typewriterLines;
   const [displayedLines, setDisplayedLines] = useState(['', '', '']);
   const [currentLine, setCurrentLine] = useState(0);
   const [currentChar, setCurrentChar] = useState(0);
