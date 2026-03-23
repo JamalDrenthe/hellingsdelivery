@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { CreditCard, AlertCircle, CheckCircle, Star } from 'lucide-react';
+import { CreditCard, AlertCircle, CheckCircle, Star, ExternalLink, XCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { supabase } from '../../lib/supabase';
 import type { CustomerSubscription, SubscriptionPlan } from '../../types/database';
@@ -11,13 +12,16 @@ const statusColor: Record<string, string> = { active: 'text-green-400 bg-green-4
 
 export default function SubscriptionsPage() {
   const { user } = useAuth();
+  const [searchParams] = useSearchParams();
   const [subs, setSubs] = useState<CustomerSubscription[]>([]);
   const [plans, setPlans] = useState<SubscriptionPlan[]>([]);
   const [loading, setLoading] = useState(true);
-  const [cancelingId, setCancelingId] = useState<string | null>(null);
   const [activatingId, setActivatingId] = useState<string | null>(null);
-  const [successId, setSuccessId] = useState<string | null>(null);
+  const [billing, setBilling] = useState<'month' | 'year'>('month');
   const [error, setError] = useState<string | null>(null);
+
+  const paymentSuccess = searchParams.get('success') === 'true';
+  const paymentCanceled = searchParams.get('canceled') === 'true';
 
   useEffect(() => {
     supabase
@@ -36,50 +40,37 @@ export default function SubscriptionsPage() {
   }, [user]);
 
   const activeIds = new Set(subs.filter(s => s.status === 'active').map(s => s.plan_id));
+  const hasActiveSubscription = activeIds.size > 0;
 
   async function handleActivate(planId: string) {
     if (!user) return;
     setActivatingId(planId);
     setError(null);
-    const now = new Date();
-    const end = new Date(now);
-    end.setMonth(end.getMonth() + 1);
-    const { error: err } = await supabase.from('customer_subscriptions').insert({
-      customer_id: user.id,
-      plan_id: planId,
-      status: 'active',
-      current_period_start: now.toISOString(),
-      current_period_end: end.toISOString(),
-    });
-    if (err) {
-      setError('Activeren mislukt. Probeer het opnieuw.');
-    } else {
-      setSuccessId(planId);
-      const { data } = await supabase
-        .from('customer_subscriptions')
-        .select('*, subscription_plans(*)')
-        .eq('customer_id', user.id)
-        .order('created_at', { ascending: false });
-      setSubs((data as typeof subs) ?? []);
-      setTimeout(() => setSuccessId(null), 3000);
-    }
-    setActivatingId(null);
-  }
 
-  async function handleCancel(subId: string) {
-    if (!confirm('Weet u zeker dat u dit abonnement wilt opzeggen?')) return;
-    setCancelingId(subId);
-    setError(null);
-    const { error: err } = await supabase
-      .from('customer_subscriptions')
-      .update({ cancel_at_period_end: true })
-      .eq('id', subId);
-    if (err) {
-      setError('Opzeggen mislukt. Probeer het opnieuw.');
-    } else {
-      setSubs(prev => prev.map(s => s.id === subId ? { ...s, cancel_at_period_end: true } : s));
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) { setError('Sessie verlopen, log opnieuw in.'); setActivatingId(null); return; }
+
+    const res = await fetch(
+      `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/create-checkout-session`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${session.access_token}`,
+        },
+        body: JSON.stringify({ planId, billingInterval: billing }),
+      }
+    );
+
+    const json = await res.json() as { url?: string; error?: string };
+
+    if (!res.ok || !json.url) {
+      setError(json.error ?? 'Kan betaling niet starten. Probeer opnieuw of neem contact op.');
+      setActivatingId(null);
+      return;
     }
-    setCancelingId(null);
+
+    window.location.href = json.url;
   }
 
   if (loading) {
@@ -94,6 +85,19 @@ export default function SubscriptionsPage() {
     <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
       <h1 className="text-2xl font-black text-white uppercase tracking-tight mb-8">Abonnementen</h1>
 
+      {/* Payment feedback */}
+      {paymentSuccess && (
+        <div className="flex items-center gap-3 bg-green-400/10 border border-green-400/20 rounded-xl px-4 py-3 mb-6">
+          <CheckCircle className="w-4 h-4 text-green-400 shrink-0" />
+          <p className="text-green-400 text-sm font-bold">Betaling geslaagd! Uw abonnement is geactiveerd.</p>
+        </div>
+      )}
+      {paymentCanceled && (
+        <div className="flex items-center gap-3 bg-orange-400/10 border border-orange-400/20 rounded-xl px-4 py-3 mb-6">
+          <XCircle className="w-4 h-4 text-orange-400 shrink-0" />
+          <p className="text-orange-400 text-sm">Betaling geannuleerd. U kunt het opnieuw proberen.</p>
+        </div>
+      )}
       {error && (
         <div className="flex items-center gap-3 bg-red-400/10 border border-red-400/20 rounded-xl px-4 py-3 mb-6">
           <AlertCircle className="w-4 h-4 text-red-400 shrink-0" />
@@ -104,10 +108,37 @@ export default function SubscriptionsPage() {
       {/* Available plans */}
       {plans.length > 0 && (
         <section className="mb-10">
-          <h2 className="text-white font-black text-sm uppercase tracking-wider mb-4">Beschikbare Plannen</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="flex items-center justify-between flex-wrap gap-4 mb-4">
+            <h2 className="text-white font-black text-sm uppercase tracking-wider">Beschikbare Plannen</h2>
+            <div className="flex items-center gap-3 bg-[#1a1a1a] border border-white/5 rounded-xl px-4 py-2">
+              <span className={`text-xs font-bold uppercase tracking-wider ${billing === 'month' ? 'text-white' : 'text-gray-500'}`}>Maandelijks</span>
+              <button
+                onClick={() => setBilling(b => b === 'month' ? 'year' : 'month')}
+                aria-label="Schakel facturatieperiode"
+                title="Schakel facturatieperiode"
+                className={`relative w-10 h-5 rounded-full transition-colors duration-300 focus:outline-none ${billing === 'year' ? 'bg-[#f04e23]' : 'bg-gray-600'}`}
+              >
+                <span className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform duration-300 ${billing === 'year' ? 'translate-x-5' : 'translate-x-0.5'}`} />
+              </button>
+              <span className={`text-xs font-bold uppercase tracking-wider ${billing === 'year' ? 'text-white' : 'text-gray-500'}`}>
+                Jaarlijks <span className="text-[#f04e23]">-20%</span>
+              </span>
+            </div>
+          </div>
+
+          {hasActiveSubscription && (
+            <div className="flex items-start gap-3 bg-orange-400/10 border border-orange-400/20 rounded-xl px-4 py-3 mb-4">
+              <AlertCircle className="w-4 h-4 text-orange-400 shrink-0 mt-0.5" />
+              <p className="text-orange-400 text-sm">U heeft al een actief abonnement. Zeg uw huidige abonnement eerst op via het <Link to="/contact?subject=opzeggen" className="underline font-bold hover:text-orange-300">contactformulier</Link> voordat u een nieuw plan activeert.</p>
+            </div>
+          )}
+
+          <div className="grid sm:grid-cols-2 gap-4">
             {plans.map(plan => {
               const isActive = activeIds.has(plan.id);
+              const displayPrice = billing === 'year'
+                ? Math.round((plan.price / 100) * 0.8)
+                : plan.price / 100;
               return (
                 <div key={plan.id} className={`relative bg-[#151515] border rounded-2xl p-6 flex flex-col ${isActive ? 'border-green-500/30' : 'border-white/5 hover:border-[#f04e23]/30'} transition-all`}>
                   {isActive && (
@@ -119,7 +150,7 @@ export default function SubscriptionsPage() {
                     <Star className="w-4 h-4 text-[#f04e23]" />
                     <h3 className="text-white font-black text-sm uppercase tracking-wider">{plan.name}</h3>
                   </div>
-                  <p className="text-gray-400 text-xs leading-relaxed mb-4 flex-1">{plan.description}</p>
+                  <p className="text-gray-400 text-xs leading-relaxed mb-3 flex-1">{plan.description}</p>
                   {plan.features && Array.isArray(plan.features) && (
                     <ul className="mb-4 space-y-1">
                       {(plan.features as string[]).map((f, i) => (
@@ -130,18 +161,29 @@ export default function SubscriptionsPage() {
                     </ul>
                   )}
                   <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
-                    <span className="text-white font-black text-sm">€{(plan.price / 100).toFixed(2)}<span className="text-gray-500 font-normal text-xs">/{intervalLabel[plan.billing_interval] ?? plan.billing_interval}</span></span>
+                    <div>
+                      <span className="text-white font-black text-sm">
+                        €{displayPrice.toFixed(2)}
+                        <span className="text-gray-500 font-normal text-xs">/maand</span>
+                      </span>
+                      {billing === 'year' && (
+                        <p className="text-gray-600 text-xs line-through">€{(plan.price / 100).toFixed(2)}/maand</p>
+                      )}
+                    </div>
                     {isActive ? (
                       <span className="text-xs font-bold text-green-400 flex items-center gap-1"><CheckCircle className="w-3 h-3" />Actief</span>
-                    ) : successId === plan.id ? (
-                      <span className="text-xs font-bold text-green-400 flex items-center gap-1"><CheckCircle className="w-3 h-3" />Geactiveerd!</span>
+                    ) : hasActiveSubscription ? (
+                      <span className="text-xs text-gray-600 italic">Opzeggen vereist</span>
                     ) : (
                       <button
                         onClick={() => handleActivate(plan.id)}
                         disabled={activatingId === plan.id}
                         className="flex items-center gap-1 bg-[#f04e23] hover:bg-[#d43d14] text-white text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-xl transition-colors disabled:opacity-60"
                       >
-                        {activatingId === plan.id ? <div className="w-3 h-3 border border-white border-t-transparent rounded-full animate-spin" /> : 'Activeer'}
+                        {activatingId === plan.id
+                          ? <div className="w-3 h-3 border border-white border-t-transparent rounded-full animate-spin" />
+                          : <><ExternalLink className="w-3 h-3" />Activeer</>
+                        }
                       </button>
                     )}
                   </div>
@@ -198,13 +240,12 @@ export default function SubscriptionsPage() {
                     )}
                   </div>
                   {sub.status === 'active' && !sub.cancel_at_period_end && (
-                    <button
-                      onClick={() => handleCancel(sub.id)}
-                      disabled={cancelingId === sub.id}
-                      className="shrink-0 text-xs font-bold text-gray-500 hover:text-red-400 border border-white/10 hover:border-red-400/30 px-4 py-2 rounded-xl transition-all disabled:opacity-50"
+                    <Link
+                      to="/contact?subject=opzeggen"
+                      className="shrink-0 text-xs font-bold text-gray-500 hover:text-red-400 border border-white/10 hover:border-red-400/30 px-4 py-2 rounded-xl transition-all whitespace-nowrap"
                     >
-                      {cancelingId === sub.id ? 'Bezig...' : 'Opzeggen'}
-                    </button>
+                      Opzeggen
+                    </Link>
                   )}
                 </div>
               </div>
