@@ -32,20 +32,20 @@ export default function Header() {
 
   return (
     <>
-      <nav className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? 'bg-[#111]/90 backdrop-blur-lg py-3 shadow-lg border-b border-white/10' : 'bg-transparent py-4 md:py-6'}`}>
+      <nav className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? 'bg-[#111]/90 backdrop-blur-lg py-2 shadow-lg border-b border-white/10' : 'bg-transparent py-2 md:py-3'}`}>
         <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
           
           {/* Logo */}
-          <Link to="/" className="flex items-center cursor-pointer group hover:scale-105 transition-transform duration-300 py-2">
+          <Link to="/" className="flex items-center cursor-pointer group hover:scale-105 transition-transform duration-300 py-1">
             <img 
               src="/images/hellingsdeliverylogoletters.png" 
               alt="Hellings Delivery Logo" 
-              className="h-16 md:h-20 w-auto object-contain"
+              className="h-10 md:h-12 w-auto object-contain"
             />
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center space-x-8 text-sm font-semibold tracking-widest">
+          <div className="hidden lg:flex items-center space-x-6 text-xs font-semibold tracking-widest">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -57,7 +57,7 @@ export default function Header() {
             ))}
             <Link 
               to="/contact" 
-              className="bg-[#f04e23] text-white px-8 py-3.5 rounded-full uppercase tracking-wider hover:bg-orange-600 hover:shadow-lg hover:shadow-[#f04e23]/30 transition-all duration-300 transform hover:-translate-y-0.5 ml-4"
+              className="bg-[#f04e23] text-white px-5 py-2.5 rounded-full uppercase tracking-wider hover:bg-orange-600 hover:shadow-lg hover:shadow-[#f04e23]/30 transition-all duration-300 transform hover:-translate-y-0.5 ml-2"
             >
               Contact
             </Link>
@@ -86,7 +86,7 @@ export default function Header() {
             aria-label="Open menu"
             title="Menu openen"
           >
-            <Menu className="w-7 h-7 md:w-8 md:h-8" />
+            <Menu className="w-5 h-5" />
           </button>
         </div>
       </nav>

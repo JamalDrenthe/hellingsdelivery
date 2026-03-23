@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { CheckCircle, ArrowRight, Shield, Star, Zap, Phone, Clock, FileText } from 'lucide-react';
+import { useState } from 'react';
 import { fadeUp, staggerContainer, staggerChild, viewportOnce } from '../lib/animations';
 import SeoHead from '../components/SeoHead';
 import { useAuth } from '../contexts/AuthContext';
@@ -59,6 +60,8 @@ const faqs = [
 
 export default function PrijzenPage() {
   const { user } = useAuth();
+  const [billing, setBilling] = useState<'month' | 'year'>('month');
+  const yearlyMultiplier = 0.8;
 
   return (
     <div>
@@ -86,6 +89,24 @@ export default function PrijzenPage() {
             <motion.p variants={staggerChild} className="text-gray-400 text-base md:text-lg max-w-xl mx-auto font-light">
               Transparante prijzen zonder verborgen kosten. Maandelijks opzegbaar.
             </motion.p>
+
+            {/* Billing toggle */}
+            <motion.div variants={staggerChild} className="flex items-center justify-center gap-4 mt-8">
+              <span className={`text-sm font-bold uppercase tracking-wider ${billing === 'month' ? 'text-white' : 'text-gray-500'}`}>Maandelijks</span>
+              <button
+                onClick={() => setBilling(b => b === 'month' ? 'year' : 'month')}
+                aria-label="Schakel facturatieperiode"
+                title="Schakel facturatieperiode"
+                className="relative w-14 h-7 rounded-full transition-colors duration-300 focus:outline-none"
+                style={{ background: billing === 'year' ? '#f04e23' : '#333' }}
+              >
+                <span className={`absolute top-1 w-5 h-5 bg-white rounded-full shadow transition-transform duration-300 ${billing === 'year' ? 'translate-x-8' : 'translate-x-1'}`} />
+              </button>
+              <span className={`text-sm font-bold uppercase tracking-wider ${billing === 'year' ? 'text-white' : 'text-gray-500'}`}>
+                Jaarlijks
+                <span className="ml-2 text-xs bg-[#f04e23]/20 text-[#f04e23] px-2 py-0.5 rounded-full">-20%</span>
+              </span>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -118,9 +139,15 @@ export default function PrijzenPage() {
                   <p className={`text-sm leading-relaxed mb-6 flex-shrink-0 ${plan.highlight ? 'text-white/80' : 'text-gray-400'}`}>{plan.description}</p>
 
                   <div className={`text-4xl font-black mb-1 ${plan.highlight ? 'text-white' : 'text-white'}`}>
-                    €{plan.price}<span className={`text-base font-normal ${plan.highlight ? 'text-white/60' : 'text-gray-500'}`}>/{plan.interval}</span>
+                    €{billing === 'year' ? Math.round(plan.price * yearlyMultiplier) : plan.price}
+                    <span className={`text-base font-normal ${plan.highlight ? 'text-white/60' : 'text-gray-500'}`}>/{billing === 'year' ? 'maand' : plan.interval}</span>
                   </div>
-                  <p className={`text-xs mb-6 ${plan.highlight ? 'text-white/60' : 'text-gray-600'}`}>excl. BTW · maandelijks opzegbaar</p>
+                  {billing === 'year' && (
+                    <p className={`text-xs mb-1 line-through ${plan.highlight ? 'text-white/40' : 'text-gray-600'}`}>€{plan.price}/maand</p>
+                  )}
+                  <p className={`text-xs mb-6 ${plan.highlight ? 'text-white/60' : 'text-gray-600'}`}>
+                    {billing === 'year' ? `€${Math.round(plan.price * yearlyMultiplier * 12)}/jaar · 20% bespaard` : 'excl. BTW · maandelijks opzegbaar'}
+                  </p>
 
                   <ul className="space-y-2 mb-8 flex-1">
                     {plan.features.map((f, fi) => (

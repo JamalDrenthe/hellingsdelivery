@@ -197,6 +197,7 @@ export default function ContactPage() {
                         <option value="offerte">Offerte aanvragen</option>
                         <option value="informatie">Algemene informatie</option>
                         <option value="spoed">Spoedopdracht</option>
+                        <option value="opzeggen">Abonnement opzeggen</option>
                         <option value="anders">Anders</option>
                       </select>
                     </div>

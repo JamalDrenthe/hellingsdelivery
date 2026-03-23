@@ -206,7 +206,7 @@ export default function AccountShopPage() {
                   <span className="text-gray-300">{item.name}</span>
                   <div className="flex items-center gap-3">
                     <span className="text-white font-bold">€{item.price.toFixed(2)}</span>
-                    <button onClick={() => toggleCart(id)} className="text-gray-600 hover:text-red-400 transition-colors">
+                    <button onClick={() => toggleCart(id)} aria-label="Verwijder" title="Verwijder" className="text-gray-600 hover:text-red-400 transition-colors">
                       <X className="w-3 h-3" />
                     </button>
                   </div>

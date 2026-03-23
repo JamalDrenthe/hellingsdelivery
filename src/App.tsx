@@ -19,6 +19,7 @@ import OrdersPage from './pages/account/OrdersPage';
 import SubscriptionsPage from './pages/account/SubscriptionsPage';
 import ProfilePage from './pages/account/ProfilePage';
 import AccountShopPage from './pages/account/AccountShopPage';
+import ScrollToTop from './components/ScrollToTop';
 
 const pageVariants: Variants = {
   initial: { opacity: 0, y: 16 },
@@ -68,6 +69,7 @@ function AnimatedRoutes() {
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <AnimatedRoutes />
     </Router>
   );
