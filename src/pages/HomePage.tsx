@@ -190,7 +190,7 @@ export default function HomePage() {
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f04e23] to-[#F38A31]">onze zorg</span>
               </h2>
               <p className="text-gray-600 mb-6 leading-relaxed text-sm md:text-base lg:text-lg font-light">
-                Hellings Delivery is een gespecialiseerd koeriers- en vervoersbedrijf dat zich richt op maatwerk, discretie en kwaliteit. Wij vervoeren geen standaard pakketten, maar bieden een exclusieve service voor goederen en personen.
+                Hellings Delivery is een gespecialiseerd koeriers- en vervoersbedrijf dat zich richt op maatwerk, discretie en kwaliteit. Wij vervoeren geen standaard pakketten, maar bieden een exclusieve service voor goederen.
               </p>
               <p className="text-gray-500 mb-8 md:mb-10 leading-relaxed font-light text-sm md:text-base">
                 Onze klanten variëren van particulieren met luxe wensen tot zorginstellingen en bedrijven die vertrouwelijke documenten of kostbare objecten moeten laten bezorgen. Geen enkele opdracht is hetzelfde; wij denken in oplossingen.
@@ -380,36 +380,36 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-5xl mx-auto">
             
-            <div className="space-y-8 lg:space-y-12 order-2 lg:order-1 flex flex-col items-start lg:items-end">
+            <div className="space-y-8 lg:space-y-12 order-2 lg:order-1 flex flex-col items-start">
               <div className="group hover:-translate-y-1 transition-transform w-full">
-                <div className="flex flex-row lg:flex-row-reverse items-center justify-start lg:justify-start gap-4 mb-3 md:mb-4">
+                <div className="flex items-center gap-4 mb-3 md:mb-4">
                   <div className="w-12 h-12 md:w-16 md:h-16 bg-white shadow-lg rounded-2xl flex items-center justify-center text-[#f04e23] group-hover:bg-[#f04e23] group-hover:text-white transition-all duration-300 flex-shrink-0">
                     <UserCheck className="w-6 h-6 md:w-8 md:h-8" />
                   </div>
-                  <h4 className="text-base md:text-xl font-bold uppercase tracking-wider text-gray-800 group-hover:text-[#f04e23] transition-colors text-left lg:text-right">Vast Aanspreekpunt</h4>
+                  <h4 className="text-base md:text-xl font-bold uppercase tracking-wider text-gray-800 group-hover:text-[#f04e23] transition-colors text-left">Vast Aanspreekpunt</h4>
                 </div>
-                <p className="text-gray-500 text-sm md:text-base leading-relaxed font-light text-left lg:text-right pl-[64px] md:pl-[80px] lg:pl-0 lg:pr-[80px]">
+                <p className="text-gray-500 text-sm md:text-base leading-relaxed font-light text-left pl-[64px] md:pl-[80px]">
                   Voor vertrouwelijk vervoer krijgt u een vaste chauffeur toegewezen die bekend is met uw wensen.
                 </p>
               </div>
               
               <div className="group hover:-translate-y-1 transition-transform w-full">
-                <div className="flex flex-row lg:flex-row-reverse items-center justify-start lg:justify-start gap-4 mb-3 md:mb-4">
+                <div className="flex items-center gap-4 mb-3 md:mb-4">
                   <div className="w-12 h-12 md:w-16 md:h-16 bg-white shadow-lg rounded-2xl flex items-center justify-center text-[#f04e23] group-hover:bg-[#f04e23] group-hover:text-white transition-all duration-300 flex-shrink-0">
                     <Clock className="w-6 h-6 md:w-8 md:h-8" />
                   </div>
-                  <h4 className="text-base md:text-xl font-bold uppercase tracking-wider text-gray-800 group-hover:text-[#f04e23] transition-colors text-left lg:text-right">Spoeddiensten 24/7</h4>
+                  <h4 className="text-base md:text-xl font-bold uppercase tracking-wider text-gray-800 group-hover:text-[#f04e23] transition-colors text-left">Spoeddiensten 24/7</h4>
                 </div>
-                <p className="text-gray-500 text-sm md:text-base leading-relaxed font-light text-left lg:text-right pl-[64px] md:pl-[80px] lg:pl-0 lg:pr-[80px]">
-                  Voor spoed kunnen wij binnen 30 minuten een auto inzetten in de meeste grote steden.
+                <p className="text-gray-500 text-sm md:text-base leading-relaxed font-light text-left pl-[64px] md:pl-[80px]">
+                  Voor spoedgevallen staan wij altijd voor u klaar. Neem direct contact op voor een snelle inzet van een koerier.
                 </p>
               </div>
             </div>
 
-            <div className="relative order-1 lg:order-2 flex justify-center mb-4 lg:mb-0 px-8 sm:px-12 lg:px-0">
-               <div className="relative w-full max-w-[280px] sm:max-w-sm">
+            <div className="relative order-1 lg:order-2 flex justify-center lg:justify-end mb-4 lg:mb-0 px-8 sm:px-12 lg:px-0">
+               <div className="relative w-full max-w-[280px] sm:max-w-sm md:max-w-md">
                  <div className="absolute inset-0 bg-gradient-to-tr from-[#f04e23] to-[#F38A31] rounded-3xl transform rotate-6 scale-105 opacity-20 blur-lg"></div>
                  <img 
                     src="/images/stock photos/hd_stock_photo_03.png" 
@@ -418,21 +418,6 @@ export default function HomePage() {
                     className="w-full h-auto object-cover rounded-3xl shadow-2xl relative z-10 border-4 border-white"
                   />
                </div>
-            </div>
-
-            <div className="space-y-8 lg:space-y-12 order-3 flex flex-col items-start w-full">
-              <div className="group hover:-translate-y-1 transition-transform w-full">
-                <div className="flex items-center gap-4 mb-3 md:mb-4">
-                  <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-[#f04e23] to-[#c23610] shadow-lg shadow-[#f04e23]/30 rounded-2xl flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                    <ShieldCheck className="w-6 h-6 md:w-8 md:h-8" />
-                  </div>
-                  <h4 className="text-base md:text-xl font-bold uppercase tracking-wider text-gray-800 group-hover:text-[#f04e23] transition-colors text-left">Neutrale Aanpak</h4>
-                </div>
-                <p className="text-gray-500 text-sm md:text-base leading-relaxed font-light pl-[64px] md:pl-[80px] text-left">
-                  Indien gewenst gebruiken we neutrale verpakkingen en onopvallende voertuigen (volledig zwarte busjes).
-                </p>
-              </div>
-
             </div>
 
           </div>

@@ -35,11 +35,6 @@ export default function FaqPage() {
     },
     // Boeken & Reserveren
     {
-      question: 'Kan ik zelf een auto kiezen?',
-      answer: 'Ja, bij Hellings Delivery geeft u bij de boeking uw voorkeur aan. Wij adviseren u graag welke auto het beste past bij uw lading of gezelschap. U kunt kiezen uit luxe sedans, premium SUV\'s, discreet busjes, zorgvoertuigen en koeriersauto\'s.',
-      category: 'boeken'
-    },
-    {
       question: 'Hoe ver van tevoren moet ik boeken?',
       answer: 'Voor reguliere ritten adviseren wij minimaal 24 uur van tevoren te boeken. Voor spoeddiensten kunnen wij vaak binnen 30 minuten een auto inzetten, afhankelijk van de locatie en beschikbaarheid.',
       category: 'boeken'
@@ -74,16 +69,6 @@ export default function FaqPage() {
     {
       question: 'Is zorgvervoer vergoed door de zorgverzekeraar?',
       answer: 'Wij werken met zowel particulieren als zorginstellingen. Bij medisch vervoer op verwijzing kunnen wij een factuur leveren die u kunt indienen bij uw verzekeraar. De vergoeding hangt af van uw verzekering en situatie. Vraag ons naar de mogelijkheden.',
-      category: 'zorg'
-    },
-    {
-      question: 'Zijn jullie voertuigen rolstoeltoegankelijk?',
-      answer: 'Ja, wij hebben speciale zorgvoertuigen uitgerust met rolstoelliften. Deze voertuigen zijn geschikt voor het vervoer van mensen met mobiliteitsbeperkingen. Geef bij de boeking aan dat u een rolstoeltoegankelijk voertuig nodig heeft.',
-      category: 'zorg'
-    },
-    {
-      question: 'Kunnen jullie begeleiding bieden tijdens de rit?',
-      answer: 'Onze chauffeurs zijn getraind in zorgcommunicatie en kunnen begeleiding bieden tijdens de rit. Wij rijden rustig, nemen de tijd en zorgen voor een comfortabele ervaring. Indien nodig kunnen wij ook begeleiding bieden bij het in- en uitstappen.',
       category: 'zorg'
     },
     // Spoed & 24/7
