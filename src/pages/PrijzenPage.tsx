@@ -97,8 +97,7 @@ export default function PrijzenPage() {
                 onClick={() => setBilling(b => b === 'month' ? 'year' : 'month')}
                 aria-label="Schakel facturatieperiode"
                 title="Schakel facturatieperiode"
-                className="relative w-14 h-7 rounded-full transition-colors duration-300 focus:outline-none"
-                style={{ background: billing === 'year' ? '#f04e23' : '#333' }}
+                className={`relative w-14 h-7 rounded-full transition-colors duration-300 focus:outline-none ${billing === 'year' ? 'bg-[#f04e23]' : 'bg-[#333]'}`}
               >
                 <span className={`absolute top-1 w-5 h-5 bg-white rounded-full shadow transition-transform duration-300 ${billing === 'year' ? 'translate-x-8' : 'translate-x-1'}`} />
               </button>
