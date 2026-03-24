@@ -58,7 +58,7 @@ export default function ServicesPage() {
       fullDesc: 'Voor bedrijven bieden wij flexibele logistieke oplossingen. Van spoedbezorgingen tot vaste contracten en dagelijkse koeriersdiensten – wij passen ons aan uw bedrijfsbehoeften aan.',
       features: [
         'Vaste contracten met voorkeursbehandeling',
-        'Spoeddiensten 24/7 beschikbaar',
+        'Spoeddiensten beschikbaar',
         'Dagelijkse koeriersdiensten',
         'Maandelijkse rapportage en facturering',
         'Dedicated accountmanager',
@@ -96,7 +96,7 @@ export default function ServicesPage() {
     <div>
       <SeoHead
         title="Onze Diensten – Discreet & Vertrouwelijk Transport | Hellings Delivery"
-        description="Hellings Delivery biedt discreet goederentransport, vertrouwelijke koeriersdiensten en maatwerk voor bedrijven. 100% discretie, 24/7 beschikbaar."
+        description="Hellings Delivery biedt discreet goederentransport, vertrouwelijke koeriersdiensten en maatwerk voor bedrijven. 100% discretie."
         canonical="https://hellingsdelivery.nl/diensten"
         jsonLd={breadcrumbJsonLd}
       />
@@ -274,9 +274,9 @@ export default function ServicesPage() {
               <div className="w-16 h-16 mx-auto bg-[#222] group-hover:bg-[#f04e23]/10 rounded-2xl flex items-center justify-center mb-6 transition-colors duration-300">
                 <Clock className="w-8 h-8 text-white group-hover:text-[#f04e23] transition-colors duration-300" />
               </div>
-              <h3 className="text-lg font-bold text-white uppercase mb-3 tracking-wider">24/7 Beschikbaar</h3>
+              <h3 className="text-lg font-bold text-white uppercase mb-3 tracking-wider">Altijd Bereikbaar</h3>
               <p className="text-gray-400 text-sm leading-relaxed font-light">
-                Altijd bereikbaar, dag en nacht. Voor spoed kunnen wij binnen 30 minuten een auto inzetten.
+                Wij zijn bereikbaar voor dringende opdrachten. Voor spoed kunnen wij snel een auto inzetten.
               </p>
             </div>
 

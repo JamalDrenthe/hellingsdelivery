@@ -77,7 +77,7 @@ export default function HomePage() {
     <div>
       <SeoHead
         title="Hellings Delivery | Luxe & Veilig Vervoer in Nederland"
-        description="Hellings Delivery: exclusieve koeriers- en vervoersdiensten. VIP vervoer, discreet transport en zorgvervoer in Nederland en België. 24/7 beschikbaar."
+        description="Hellings Delivery: exclusieve koeriers- en vervoersdiensten. VIP vervoer, discreet transport en zorgvervoer in Nederland en België."
         canonical="https://hellingsdelivery.nl"
       />
 
@@ -126,13 +126,9 @@ export default function HomePage() {
               initial="hidden"
               animate="visible"
               transition={{ delay: 0.4 }}
-              className="w-full lg:w-auto grid grid-cols-3 lg:grid-cols-1 gap-4 lg:gap-10 text-center lg:text-right lg:pr-12 backdrop-blur-md bg-white/5 p-4 sm:p-6 lg:p-8 rounded-2xl md:rounded-3xl border border-white/10"
+              className="w-full lg:w-auto grid grid-cols-2 lg:grid-cols-1 gap-4 lg:gap-10 text-center lg:text-right lg:pr-12 backdrop-blur-md bg-white/5 p-4 sm:p-6 lg:p-8 rounded-2xl md:rounded-3xl border border-white/10"
             >
-              <div className="group cursor-default">
-                <div className="text-gray-400 text-[9px] sm:text-[10px] md:text-xs tracking-[0.1em] sm:tracking-[0.2em] font-bold uppercase mb-1 md:mb-2 group-hover:text-[#f04e23] transition-colors">Bereikbaar</div>
-                <div className="text-2xl sm:text-3xl md:text-5xl font-black text-white drop-shadow-lg">24/7</div>
-              </div>
-              <div className="group cursor-default border-l border-r border-white/10 lg:border-none px-2 lg:px-0">
+              <div className="group cursor-default border-r border-white/10 lg:border-none px-2 lg:px-0">
                 <div className="text-gray-400 text-[9px] sm:text-[10px] md:text-xs tracking-[0.1em] sm:tracking-[0.2em] font-bold uppercase mb-1 md:mb-2 group-hover:text-[#f04e23] transition-colors">Verzekerd</div>
                 <div className="text-2xl sm:text-3xl md:text-5xl font-black text-white drop-shadow-lg">€2.5<span className="text-[#f04e23] text-lg sm:text-xl md:text-3xl align-top ml-1">M</span></div>
               </div>
@@ -275,7 +271,7 @@ export default function HomePage() {
               </div>
               <h3 className="text-lg md:text-xl font-bold text-white uppercase mb-3 md:mb-4 tracking-wider">Maatwerk voor Bedrijven</h3>
               <p className="text-gray-400 mb-6 md:mb-8 text-sm leading-relaxed font-light">
-                Vaste contracten, spoeddiensten 24/7 en dagelijkse koeriersdiensten voor zakelijke klanten die vertrouwelijkheid eisen.
+                Vaste contracten, spoeddiensten en dagelijkse koeriersdiensten voor zakelijke klanten die vertrouwelijkheid eisen.
               </p>
               <Link to="/diensten" className="inline-flex items-center text-xs md:text-sm font-bold text-gray-400 uppercase tracking-widest hover:text-[#f04e23] transition-colors group/btn">
                 Meer Info <ArrowRight className="w-4 h-4 ml-2 opacity-0 -translate-x-2 group-hover/btn:opacity-100 group-hover/btn:translate-x-0 transition-all" />
@@ -400,7 +396,7 @@ export default function HomePage() {
                   <div className="w-12 h-12 md:w-16 md:h-16 bg-white shadow-lg rounded-2xl flex items-center justify-center text-[#f04e23] group-hover:bg-[#f04e23] group-hover:text-white transition-all duration-300 flex-shrink-0">
                     <Clock className="w-6 h-6 md:w-8 md:h-8" />
                   </div>
-                  <h4 className="text-base md:text-xl font-bold uppercase tracking-wider text-gray-800 group-hover:text-[#f04e23] transition-colors text-left">Spoeddiensten 24/7</h4>
+                  <h4 className="text-base md:text-xl font-bold uppercase tracking-wider text-gray-800 group-hover:text-[#f04e23] transition-colors text-left">Spoeddiensten</h4>
                 </div>
                 <p className="text-gray-500 text-sm md:text-base leading-relaxed font-light text-left pl-[64px] md:pl-[80px]">
                   Voor spoedgevallen staan wij altijd voor u klaar. Neem direct contact op voor een snelle inzet van een koerier.
@@ -573,7 +569,7 @@ export default function HomePage() {
                  Doen jullie ook spoedritten?
                </h4>
                <p className="text-gray-500 text-sm md:text-base font-light leading-relaxed pl-12">
-                 Zeker. Neem contact op via onze 24/7-lijn. Voor spoed kunnen wij binnen 30 minuten een auto inzetten in de meeste grote steden.
+                 Zeker. Neem contact op via onze spoedlijn. Voor spoed kunnen wij snel een auto inzetten in de meeste grote steden.
                </p>
             </div>
 

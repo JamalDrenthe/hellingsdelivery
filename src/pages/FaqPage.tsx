@@ -28,11 +28,6 @@ export default function FaqPage() {
       answer: 'Wij zijn actief in heel Nederland en België, met een speciale focus op de Randstad (Amsterdam, Rotterdam, Den Haag, Utrecht), Noord-Brabant, Limburg, Antwerpen en Brussel. Internationale ritten naar Duitsland, Frankrijk en het VK zijn mogelijk op aanvraag.',
       category: 'algemeen'
     },
-    {
-      question: 'Zijn jullie 24/7 bereikbaar?',
-      answer: 'Ja, wij zijn 24 uur per dag, 7 dagen per week bereikbaar. Voor spoedgevallen kunnen wij in de meeste grote steden binnen 30 minuten een auto inzetten. Onze spoedlijn is altijd bereikbaar voor dringende zaken.',
-      category: 'algemeen'
-    },
     // Boeken & Reserveren
     {
       question: 'Hoe ver van tevoren moet ik boeken?',
@@ -71,10 +66,10 @@ export default function FaqPage() {
       answer: 'Wij werken met zowel particulieren als zorginstellingen. Bij medisch vervoer op verwijzing kunnen wij een factuur leveren die u kunt indienen bij uw verzekeraar. De vergoeding hangt af van uw verzekering en situatie. Vraag ons naar de mogelijkheden.',
       category: 'zorg'
     },
-    // Spoed & 24/7
+    // Spoedritten
     {
       question: 'Doen jullie ook spoedritten?',
-      answer: 'Zeker. Neem contact op via onze 24/7-lijn. Voor spoed kunnen wij binnen 30 minuten een auto inzetten in de meeste grote steden. Spoedritten worden altijd prioriteit gegeven en direct opgepakt.',
+      answer: 'Zeker. Neem contact met ons op via onze spoedlijn. Voor spoed kunnen wij snel een auto inzetten in de meeste grote steden. Spoedritten worden altijd prioriteit gegeven en direct opgepakt.',
       category: 'spoed'
     },
     {
@@ -100,11 +95,6 @@ export default function FaqPage() {
     },
     // Betaling
     {
-      question: 'Hoe kan ik betalen?',
-      answer: 'Wij accepteren diverse betaalmethoden, inclusief pin, creditcard, en factuur (voor zakelijke klanten). Bij langdurige samenwerkingen kunnen wij maandelijkse facturatie afspreken.',
-      category: 'betaling'
-    },
-    {
       question: 'Krijg ik een factuur?',
       answer: 'Ja, u ontvangt altijd een gedetailleerde factuur na afloop van de rit of zending. Voor zakelijke klanten kunnen wij maandelijkse rapportages en facturen verzorgen.',
       category: 'betaling'
@@ -117,7 +107,7 @@ export default function FaqPage() {
     { id: 'boeken', label: 'Boeken & Reserveren' },
     { id: 'vertrouwelijk', label: 'Vertrouwelijk Vervoer' },
     { id: 'zorg', label: 'Zorgvervoer' },
-    { id: 'spoed', label: 'Spoed & 24/7' },
+    { id: 'spoed', label: 'Spoedritten' },
     { id: 'veiligheid', label: 'Veiligheid & Verzekering' },
     { id: 'betaling', label: 'Betaling' }
   ];
@@ -133,7 +123,7 @@ export default function FaqPage() {
         'text': faq.answer
       }
     }))
-  }), []);
+  }), [faqs]);
 
   const breadcrumbJsonLd = useMemo(() => ({
     '@context': 'https://schema.org',
@@ -156,7 +146,7 @@ export default function FaqPage() {
     <div>
       <SeoHead
         title="FAQ – Veelgestelde Vragen | Hellings Delivery"
-        description="Antwoorden op veelgestelde vragen over VIP vervoer, zorgvervoer, boeken en veiligheid bij Hellings Delivery. 24/7 bereikbaar."
+        description="Antwoorden op veelgestelde vragen over VIP vervoer, zorgvervoer, boeken en veiligheid bij Hellings Delivery."
         canonical="https://hellingsdelivery.nl/faq"
         jsonLd={[faqJsonLd, breadcrumbJsonLd]}
       />
@@ -283,7 +273,7 @@ export default function FaqPage() {
                   Nog Vragen?
                 </h2>
                 <p className="text-white/90 text-sm md:text-lg font-light mb-8">
-                  Ons team staat 24/7 voor u klaar om al uw vragen te beantwoorden. Neem gerust contact met ons op.
+                  Ons team staat voor u klaar om al uw vragen te beantwoorden. Neem gerust contact met ons op.
                 </p>
                 <Link 
                   to="/contact" 
@@ -300,7 +290,7 @@ export default function FaqPage() {
                 <Clock className="w-8 h-8 text-white" />
                 <div className="text-left">
                   <h4 className="text-white font-bold uppercase text-sm mb-1">Bereikbaar</h4>
-                  <p className="text-white/80 text-sm">24/7 beschikbaar</p>
+                  <p className="text-white/80 text-sm">Altijd snelle reactie</p>
                 </div>
               </div>
             </div>

@@ -18,19 +18,19 @@ VALUES
   (
     'a1b2c3d4-0002-0000-0000-000000000002',
     'Membership',
-    'Onbeperkte toegang tot ons netwerk van discrete koeriers en chauffeurs. De ultieme flexibiliteit voor veeleisende klanten.',
+    'Directe toegang tot ons netwerk van discrete koeriers en chauffeurs. De ultieme flexibiliteit voor veeleisende klanten.',
     'month',
     29900,
-    '["Onbeperkte boekingen per maand", "Voorrang bij spoedritten (30 min response)", "Vaste ophaalmomenten inbegrepen", "Spoedritverzekering inbegrepen", "Premium tracking dashboard", "NDA-standaard op alle ritten", "Priority klantenservice 24/7", "Maandelijkse prestatierapportage"]',
+    '["Gegarandeerde beschikbaarheid per boeking", "Voorrang bij spoedritten", "Vaste ophaalmomenten in te plannen", "Spoedritverzekering optioneel", "Premium tracking dashboard", "NDA-standaard op alle ritten", "Priority klantenservice", "Maandelijkse prestatierapportage"]',
     true
   ),
   (
     'a1b2c3d4-0003-0000-0000-000000000003',
     'Spoedritverzekering',
-    'Zekerheid dat er altijd binnen 30 minuten een koeriersdienst beschikbaar is, dag en nacht, 7 dagen per week.',
+    'Zekerheid dat er altijd snel een koeriersdienst beschikbaar is, op alle dagen van de week.',
     'month',
     37500,
-    '["Garantie: binnen 30 minuten beschikbaar", "Geldig 24/7, ook op feestdagen", "Spoedrit max 3× per maand inbegrepen", "Directe telefonische beschikbaarheid", "Volledig verzekerd transport", "Nationaal dekkingsgebied"]',
+    '["Garantie: snelle beschikbaarheid", "Geldig op alle dagen, ook op feestdagen", "1 spoedrit per maand inbegrepen", "Directe telefonische beschikbaarheid", "Volledig verzekerd transport", "Nationaal dekkingsgebied"]',
     true
   )
 ON CONFLICT (id) DO UPDATE SET

@@ -38,9 +38,9 @@ export default function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center cursor-pointer group hover:scale-105 transition-transform duration-300 py-1">
             <img 
-              src="/images/hellingsdeliverylogoletters.png" 
+              src="/images/hellingsdeliverylogofull.png" 
               alt="Hellings Delivery Logo" 
-              className="h-10 md:h-12 w-auto object-contain"
+              className="h-[72px] md:h-[86px] w-auto object-contain brightness-0 invert"
             />
           </Link>
 
